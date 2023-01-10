@@ -15,6 +15,7 @@ const ProductScreen = ({route}) => {
     const {product} = route.params.params;
     const navigation = useNavigation();
     const [amount, setAmount] = useState(1);
+    const [currentImage, setCurrentImage] = useState(0);
     const [currentVariant, setCurrentVariant] = useState(0);
     return (
         <ScrollView style={styles.container}>
@@ -37,28 +38,26 @@ const ProductScreen = ({route}) => {
             <View style={styles.imageContainer}>
                 <Image
                     style={styles.image}
-                    source={require("../../assets/ProductS.png")}
+                    source={product.images[currentImage]}
                 />
             </View>
             <View style={styles.imageListContainer}>
+                {
+                    product?.images?
+                        product.images.map((image, index) => {
+                            return (
+                                <TouchableOpacity onPress={() => setCurrentImage(index)}>
                 <View style={styles.listImageContainer}>
                     <Image
                         style={styles.listImage}
-                        source={require("../../assets/ProductS1.png")}
+                        source={image}
                     />
                 </View>
-                <View style={styles.listImageContainer}>
-                    <Image
-                        style={styles.listImage}
-                        source={require("../../assets/ProductS2.png")}
-                    />
-                </View>
-                <View style={styles.listImageContainer}>
-                    <Image
-                        style={styles.listImage}
-                        source={require("../../assets/ProductS3.png")}
-                    />
-                </View>
+
+                                </TouchableOpacity>
+                            )
+                        }): ''
+                }
             </View>
             <View style={styles.wrapper}>
                 <View style={styles.wrapperHead}>
@@ -156,12 +155,16 @@ const styles = StyleSheet.create({
         color: "#FF5500",
         fontSize: 24,
     },
-    image: {},
+    image: {
+        borderRadius: 20,
+        height: 240,
+        width: 240,
+    },
     imageContainer: {
         backgroundColor: "#FFF",
         borderRadius: 20,
-        height: 245,
-        width: 245,
+        height: 230,
+        width: 230,
         alignSelf: "center",
         alignItems: "center",
         justifyContent: "center",
@@ -178,6 +181,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         resizeMode: "cover",
+        borderRadius: 10,
     },
     listImageContainer: {
         alignItems: "center",
@@ -271,6 +275,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 55,
         paddingVertical: 10,
         borderRadius: 50,
+        marginLeft: 10,
     },
     buyBtnText: {
         color: "#FFFFFF",
