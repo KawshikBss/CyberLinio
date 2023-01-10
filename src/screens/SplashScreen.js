@@ -23,7 +23,7 @@ const SplashScreen = ({ navigation }) => {
             <TouchableOpacity style={styles.skipBtn}>
                 <Text
                     style={styles.skipBtnText}
-                    onPress={() => navigation.navigate("ShopTab")}
+                    onPress={() => navigation.navigate("HomeTab")}
                 >
                     SKIP
                 </Text>
