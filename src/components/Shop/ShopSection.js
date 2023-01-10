@@ -7,7 +7,6 @@ import {
     View,
 } from "react-native";
 import Card from "./Card";
-import RecentCard from "./RecentCard";
 
 const ShopSection = ({
     header,
