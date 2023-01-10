@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const ShopScreen = ({route}) => {
+const ProfileScreen = () => {
   return (
     <View>
-      <Text>ShopScreen</Text>
+      <Text>ProfileScreen</Text>
     </View>
   )
 }
 
-export default ShopScreen
+export default ProfileScreen
