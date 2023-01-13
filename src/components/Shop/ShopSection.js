@@ -34,9 +34,9 @@ const ShopSection = ({
                                 backgroundColor={
                                     vary
                                         ? index % 2 === 0
-                                            ? "rgba(207, 0, 144, 0.2)"
-                                            : "rgba(77, 10, 142, 0.2)"
-                                        : "rgba(207, 207, 207, 0.25)"
+                                            ? "#B2CFD3"
+                                            : "#36A1AF"
+                                        : "#FCF7FF"
                                 }
                             />
                         );
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     header: {
-        color: "#343A40",
+        color: "#484554",
         fontSize: 24,
         fontWeight: "600",
         marginBottom: 10,

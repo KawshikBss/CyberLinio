@@ -1,4 +1,12 @@
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import {
+    View,
+    Text,
+    StyleSheet,
+    Image,
+    ScrollView,
+    SafeAreaView,
+    TouchableOpacity,
+} from "react-native";
 import React from "react";
 import Header from "../components/Header";
 import products from "../products";
@@ -7,41 +15,46 @@ import catagories from "../catagories";
 
 const HomeScreen = () => {
     return (
-        <ScrollView style={styles.container}>
-            <Header />
-            <Image
-                style={styles.banner}
-                source={require("../../assets/ShopBanner.png")}
-            />
-            {catagories ? (
-                <ScrollView horizontal style={styles.catagoriesContainer} showsHorizontalScrollIndicator={false}>
-                    {catagories.map((cat, index) => {
-                        return (
-                            <Text style={styles.catagory} key={index}>
-                                {cat}
-                            </Text>
-                        );
-                    })}
-                </ScrollView>
-            ) : (
-                <Text>None</Text>
-            )}
-            <ShopSection header={"Hot sales"} items={products.sale} />
-            <ShopSection
-                header={"Recently Viewed"}
-                items={products.new}
-                vary
-            />
-        </ScrollView>
+        <SafeAreaView>
+            <ScrollView style={styles.container}>
+                <Header />
+                <Image
+                    style={styles.banner}
+                    source={require("../../assets/ShopBanner.png")}
+                />
+                {catagories ? (
+                    <ScrollView
+                        horizontal
+                        style={styles.catagoriesContainer}
+                        showsHorizontalScrollIndicator={false}
+                    >
+                        {catagories.map((cat, index) => {
+                            return (
+                                <TouchableOpacity key={index}>
+                                    <Text style={styles.catagory}>{cat}</Text>
+                                </TouchableOpacity>
+                            );
+                        })}
+                    </ScrollView>
+                ) : (
+                    <Text>None</Text>
+                )}
+                <ShopSection header={"Hot sales"} items={products.sale} />
+                <ShopSection
+                    header={"Recently Viewed"}
+                    items={products.new}
+                    vary
+                />
+            </ScrollView>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         height: "100%",
-        backgroundColor: "#F7F6F4",
+        backgroundColor: "#ADA9BB",
         flexDirection: "column",
-        marginBottom: 60,
     },
     banner: {
         width: 350,
@@ -50,15 +63,15 @@ const styles = StyleSheet.create({
         alignSelf: "center",
     },
     catagoriesContainer: {
-      marginVertical: 18,
+        marginVertical: 18,
     },
     catagory: {
-      paddingVertical: 8,
-      paddingHorizontal: 16,
-      backgroundColor: '#FFF',
-      color: '#343A40',
-      marginLeft: 16,
-      borderRadius: 20,
+        paddingVertical: 8,
+        paddingHorizontal: 16,
+        backgroundColor: "#FCF7FF",
+        color: "#484554",
+        marginLeft: 16,
+        borderRadius: 20,
     },
 });
 

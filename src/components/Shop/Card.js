@@ -9,31 +9,71 @@ import {
 import Fontisto from "react-native-vector-icons/Fontisto";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-const Card = ({ product, backgroundColor='rgba(207, 207, 207, 0.25)' }) => {
+const Card = ({ product, backgroundColor = "#FCF7FF" }) => {
     const navigation = useNavigation();
     return (
-        <View style={{...styles.container, backgroundColor: backgroundColor}}>
-            <ImageBackground source={product.images[0]} style={styles.productImage} imageStyle={{borderRadius: 20, shadowColor: '#232323', shadowRadius: 10}} >
-            <Text style={styles.tag}>
-                    {product?.tag ? product.tag : "-20%"}
-                </Text>
-                <TouchableOpacity style={styles.cartBtn}>
-                    <Fontisto
-                        style={styles.cartIcon}
-                        name="shopping-basket-add"
-                    />
-                </TouchableOpacity>
-            </ImageBackground>
+        <View style={{ ...styles.container, backgroundColor: backgroundColor }}>
+            <TouchableOpacity
+                onPress={() =>
+                    navigation.navigate("Product", {
+                        screen: "Product",
+                        params: { product },
+                    })
+                }
+            >
+                <ImageBackground
+                    source={product.images[0]}
+                    style={styles.productImage}
+                    imageStyle={{
+                        borderRadius: 20,
+                        shadowColor: "#232323",
+                        shadowRadius: 10,
+                    }}
+                >
+                    <Text style={styles.tag}>
+                        {product?.tag ? product.tag : "-20%"}
+                    </Text>
+                    <TouchableOpacity
+                        style={styles.cartBtn}
+                        onPress={(e) => {
+                            e.stopPropagation();
+                        }}
+                    >
+                        <Fontisto
+                            style={styles.cartIcon}
+                            name="shopping-basket-add"
+                        />
+                    </TouchableOpacity>
+                </ImageBackground>
+            </TouchableOpacity>
             <View style={styles.wrapper}>
                 <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.navigate('Product', { screen: 'Product', params: {product} })}>
-                <Text style={styles.title}>{product.title? product.title: 'Product Title'}</Text></TouchableOpacity>
-                <View style={styles.rating}>
-                <Text style={styles.ratingText}>{product.rating? product.rating: '0.0'}
-                </Text>
-                <AntDesign name="star" style={styles.ratingText} /></View>
+                    <TouchableOpacity
+                        onPress={() =>
+                            navigation.navigate("Product", {
+                                screen: "Product",
+                                params: { product },
+                            })
+                        }
+                    >
+                        <Text style={styles.title}>
+                            {product.title
+                                ? product.title.length > 10
+                                    ? `${product.title.slice(0, 10)}...`
+                                    : product.title
+                                : "Product Title"}
+                        </Text>
+                    </TouchableOpacity>
+                    <View style={styles.rating}>
+                        <Text style={styles.ratingText}>
+                            {product.rating ? product.rating : "0.0"}
+                        </Text>
+                        <AntDesign name="star" style={styles.ratingIcon} />
+                    </View>
                 </View>
-                <Text style={styles.price}>{product.price? product.price: 'Product Price'}$</Text>
+                <Text style={styles.price}>
+                    {product.price ? product.price : "Product Price"}$
+                </Text>
             </View>
         </View>
     );
@@ -45,17 +85,17 @@ const styles = StyleSheet.create({
         height: 200,
         marginRight: 10,
         borderRadius: 20,
-        backgroundColor: 'rgba(207, 207, 207, 0.25)'
+        backgroundColor: "#FCF7FF",
     },
     productImage: {
-        width: '100%',
+        width: "100%",
         height: 140,
         resizeMode: "cover",
-        alignSelf: 'center',
+        alignSelf: "center",
     },
     tag: {
-        backgroundColor: "#FFF",
-        color: "#FF5500",
+        backgroundColor: "#FCF7FF",
+        color: "#6C63FF",
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderRadius: 20,
@@ -64,7 +104,7 @@ const styles = StyleSheet.create({
         marginLeft: 5,
     },
     cartBtn: {
-        backgroundColor: "#FFF",
+        backgroundColor: "#FCF7FF",
         height: 40,
         width: 40,
         borderRadius: 50,
@@ -76,34 +116,41 @@ const styles = StyleSheet.create({
     },
     cartIcon: {
         fontSize: 20,
-        color: "#FF5500",
+        color: "#6C63FF",
     },
     wrapper: {
-        height: '100%',
-        padding: 10,
+        height: "100%",
+        paddingHorizontal: 10,
     },
     header: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: 'space-between'
+        justifyContent: "space-between",
     },
     rating: {
-        flexDirection: 'row'
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
     },
     ratingText: {
-        color: "#FF5500",
+        color: "#484554",
         fontSize: 16,
         marginRight: 2,
     },
+    ratingIcon: {
+        color: "#D5CABD",
+        fontSize: 18,
+        marginRight: 2,
+    },
     title: {
-        color: "#343A40",
+        color: "#484554",
         fontSize: 16,
     },
     priceContainer: {
         flexDirection: "row",
     },
     price: {
-        color: "#FF5500",
+        color: "#6C63FF",
         fontSize: 16,
     },
     discount: {

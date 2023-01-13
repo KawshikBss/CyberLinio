@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 24,
-        backgroundColor: '#FFF',
+        backgroundColor: '#FCF7FF',
         borderRadius: 50,
     },
     searchInput: {
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
     searchBtnText: {
-        color: '#CFCFCF',
+        color: '#ADA9BB',
         fontSize: 28,
     },
     notificationBtnWrapper: {
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     notificationBtn: {
-        backgroundColor: '#FFF',
+        backgroundColor: '#FCF7FF',
         alignItems: 'center',
         justifyContent: 'center',
         width: 46,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         marginRight: 8,
     },
     notificationBtnText: {
-        color: '#CFCFCF',
+        color: '#ADA9BB',
         fontSize: 28,
     },
 });

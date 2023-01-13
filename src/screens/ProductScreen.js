@@ -11,10 +11,16 @@ import Feather from "react-native-vector-icons/Feather";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 
-const ProductScreen = ({route}) => {
-    const {product} = route.params.params;
+const ProductScreen = ({ route }) => {
+    const { product } = route.params.params;
     const navigation = useNavigation();
     const [amount, setAmount] = useState(1);
+    const changeAmount = (number) => {
+        setAmount((curr) => {
+            if (amount + number >= 0) return curr + number;
+            return curr;
+        });
+    };
     const [currentImage, setCurrentImage] = useState(0);
     const [currentVariant, setCurrentVariant] = useState(0);
     return (
@@ -42,22 +48,23 @@ const ProductScreen = ({route}) => {
                 />
             </View>
             <View style={styles.imageListContainer}>
-                {
-                    product?.images?
-                        product.images.map((image, index) => {
-                            return (
-                                <TouchableOpacity onPress={() => setCurrentImage(index)}>
-                <View style={styles.listImageContainer}>
-                    <Image
-                        style={styles.listImage}
-                        source={image}
-                    />
-                </View>
-
-                                </TouchableOpacity>
-                            )
-                        }): ''
-                }
+                {product?.images
+                    ? product.images.map((image, index) => {
+                          return (
+                              <TouchableOpacity
+                                  key={index}
+                                  onPress={() => setCurrentImage(index)}
+                              >
+                                  <View style={styles.listImageContainer}>
+                                      <Image
+                                          style={styles.listImage}
+                                          source={image}
+                                      />
+                                  </View>
+                              </TouchableOpacity>
+                          );
+                      })
+                    : ""}
             </View>
             <View style={styles.wrapper}>
                 <View style={styles.wrapperHead}>
@@ -84,7 +91,7 @@ const ProductScreen = ({route}) => {
                             {product.variants.map((variant, index) => {
                                 return (
                                     <TouchableOpacity
-                                    key={index}
+                                        key={index}
                                         style={
                                             currentVariant === index
                                                 ? styles.variantBtnActive
@@ -108,11 +115,17 @@ const ProductScreen = ({route}) => {
                 </View>
                 <View style={styles.buyWrapper}>
                     <View style={styles.amount}>
-                        <TouchableOpacity style={styles.amountBtn}>
+                        <TouchableOpacity
+                            style={styles.amountBtn}
+                            onPress={() => changeAmount(-1)}
+                        >
                             <Text style={styles.amountBtnText}>-</Text>
                         </TouchableOpacity>
                         <Text style={styles.amountText}>{amount}</Text>
-                        <TouchableOpacity style={styles.amountBtn}>
+                        <TouchableOpacity
+                            style={styles.amountBtn}
+                            onPress={() => changeAmount(1)}
+                        >
                             <Text style={styles.amountBtnText}>+</Text>
                         </TouchableOpacity>
                     </View>
@@ -127,7 +140,7 @@ const ProductScreen = ({route}) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#E5E5E5",
+        backgroundColor: "#ADA9BB",
     },
     header: {
         flexDirection: "row",
@@ -141,7 +154,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     headerBtn: {
-        backgroundColor: "#FFF",
+        backgroundColor: "#FCF7FF",
         width: 44,
         height: 44,
         borderRadius: 50,
@@ -152,7 +165,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     headerBtnText: {
-        color: "#FF5500",
+        color: "#484554",
         fontSize: 24,
     },
     image: {
@@ -161,7 +174,7 @@ const styles = StyleSheet.create({
         width: 240,
     },
     imageContainer: {
-        backgroundColor: "#FFF",
+        backgroundColor: "#FCF7FF",
         borderRadius: 20,
         height: 230,
         width: 230,
@@ -187,11 +200,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 20,
-        backgroundColor: "#FFF",
+        backgroundColor: "#FCF7FF",
         padding: 12,
     },
     wrapper: {
-        backgroundColor: "#FFF",
+        backgroundColor: "#FCF7FF",
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         padding: 30,
@@ -205,7 +218,7 @@ const styles = StyleSheet.create({
     wrapperHeadText: {
         fontSize: 16,
         fontWeight: "500",
-        color: "#909090",
+        color: "#ADA9BB",
     },
     rating: {
         flexDirection: "row",
@@ -213,22 +226,23 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     ratingIcon: {
-        color: "#E6BB66",
+        color: "#D5CABD",
         fontSize: 18,
+        marginRight: 5,
     },
     ratingText: {
-        color: "#3F4343",
+        color: "#484554",
         fontSize: 18,
     },
     title: {
-        color: "#343A40",
+        color: "#484554",
         fontSize: 24,
         fontWeight: "600",
         marginTop: 18,
         marginBottom: 14,
     },
     description: {
-        color: "#909090",
+        color: "#ADA9BB",
         fontSize: 16,
         fontWeight: "600",
         marginBottom: 22,
@@ -240,7 +254,7 @@ const styles = StyleSheet.create({
         marginBottom: 36,
     },
     price: {
-        color: "#FF5500",
+        color: "#6C63FF",
         fontSize: 20,
         fontWeight: "600",
     },
@@ -269,7 +283,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     buyBtn: {
-        backgroundColor: "#FF5500",
+        backgroundColor: "#6C63FF",
         alignItems: "center",
         justifyContent: "center",
         paddingHorizontal: 55,
@@ -278,7 +292,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     buyBtnText: {
-        color: "#FFFFFF",
+        color: "#FCF7FF",
         fontSize: 20,
         fontWeight: "600",
     },
@@ -291,7 +305,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     amountText: {
-        color: "#909090",
+        color: "#484554",
         marginHorizontal: 20,
         marginVertical: 6,
         fontSize: 20,
@@ -301,7 +315,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     amountBtnText: {
-        color: "#909090",
+        color: "#484554",
         fontSize: 20,
         fontWeight: "500",
     },
