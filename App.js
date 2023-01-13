@@ -25,11 +25,9 @@ const HomeTab = () => {
                     let iconName = "home";
                     if (route.name === "Shop") {
                         iconName = "shopping-bag";
-                    }
-                    else if (route.name === "Cart") {
+                    } else if (route.name === "Cart") {
                         iconName = "shopping-cart";
-                    }
-                    else if (route.name === "Profile") {
+                    } else if (route.name === "Profile") {
                         iconName = "user";
                     }
                     return (
@@ -40,7 +38,11 @@ const HomeTab = () => {
                                     : styles.tabContainer
                             }
                         >
-                            <Feather name={iconName} color={color} size={focused? 30: 24} />
+                            <Feather
+                                name={iconName}
+                                color={color}
+                                size={focused ? 30 : 24}
+                            />
                             {/* {focused ? (
                                 <Text style={styles.tabLabel}>
                                     {route.name}
@@ -51,8 +53,8 @@ const HomeTab = () => {
                         </View>
                     );
                 },
-                tabBarInactiveTintColor: "#CFCFCF",
-                tabBarActiveTintColor: "#FF5500",
+                tabBarInactiveTintColor: "#ADA9BB",
+                tabBarActiveTintColor: "#6c63ff",
             })}
         >
             <Tab.Screen name="Home" component={HomeScreen} />
@@ -81,17 +83,16 @@ export default function App() {
 
 const styles = StyleSheet.create({
     navBar: {
-        /* borderTopLeftRadius: 30,
-        borderTopRightRadius: 30, */
         borderRadius: 50,
         position: "absolute",
-        left: '5%',
-        right: '5%',
+        left: "5%",
+        right: "5%",
         bottom: 10,
         width: "90%",
         height: 60,
         zIndex: 8,
         paddingHorizontal: 10,
+        backgroundColor: '#FCF7FF'
     },
     tabContainer: {
         flexDirection: "row",
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     tabActiveContainer: {
-        backgroundColor: "rgba(255, 85, 0, 0.1)",
+        backgroundColor: "rgba(108, 99, 255, 0.2)",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
