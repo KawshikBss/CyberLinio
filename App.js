@@ -38,23 +38,22 @@ const HomeTab = () => {
                                     : styles.tabContainer
                             }
                         >
+                            <View style={focused? styles.tabActiveInner: {}}>
                             <Feather
                                 name={iconName}
                                 color={color}
                                 size={focused ? 30 : 24}
+                                style={{
+                                    height: 30,
+                                    width: 30
+                                }}
                             />
-                            {/* {focused ? (
-                                <Text style={styles.tabLabel}>
-                                    {route.name}
-                                </Text>
-                            ) : (
-                                ""
-                            )} */}
+                            </View>
                         </View>
                     );
                 },
-                tabBarInactiveTintColor: "#ADA9BB",
-                tabBarActiveTintColor: "#6c63ff",
+                tabBarInactiveTintColor: "#6C4AB6",
+                tabBarActiveTintColor: "#8D72E1",
             })}
         >
             <Tab.Screen name="Home" component={HomeScreen} />
@@ -99,19 +98,30 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    tabActiveContainer: {
-        backgroundColor: "rgba(108, 99, 255, 0.2)",
+    tabActiveInner: {
+        backgroundColor: "#8D72E133",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        paddingVertical: 8,
-        paddingHorizontal: 12,
         borderRadius: 50,
+        padding: 10,
+    },
+    tabActiveContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 50,
+        position: 'absolute',
+        top: -20,
+        backgroundColor: '#FCF7FF',
+        padding: 10,
     },
     tabLabel: {
         color: "#FF5500",
         fontWeight: "500",
         fontSize: 16,
         marginLeft: 4,
+        height: 16,
+        width: 16
     },
 });
