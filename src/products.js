@@ -15,6 +15,7 @@ const products = {
             discount: 20,
             tag: "Free shipping",
             variants: ["#3F4343", "#CCC6BA", "#CFCFCF"],
+            new: false,
         },
         {
             id: 1,
@@ -30,6 +31,7 @@ const products = {
             discount: 20,
             tag: "Free shipping",
             variants: ["#3F4343", "#CCC6BA", "#CFCFCF"],
+            new: false,
         },
         {
             id: 2,
@@ -45,6 +47,7 @@ const products = {
             discount: 20,
             tag: "Free shipping",
             variants: ["#3F4343", "#CCC6BA", "#CFCFCF"],
+            new: false,
         },
         {
             id: 3,
@@ -61,6 +64,7 @@ const products = {
             discount: 20,
             tag: "Free shipping",
             variants: ["#3F4343", "#CCC6BA", "#CFCFCF"],
+            new: false,
         },
         {
             id: 4,
@@ -76,6 +80,7 @@ const products = {
             discount: 20,
             tag: "Free shipping",
             variants: ["#3F4343", "#CCC6BA", "#CFCFCF"],
+            new: false,
         },
         {
             id: 5,
@@ -91,6 +96,7 @@ const products = {
             discount: 20,
             tag: "Free shipping",
             variants: ["#3F4343", "#CCC6BA", "#CFCFCF"],
+            new: false,
         },
     ],
     new: [
@@ -108,6 +114,7 @@ const products = {
             discount: 20,
             tag: "New",
             variants: ["#3F4343", "#CCC6BA", "#CFCFCF"],
+            new: true,
         },
         {
             id: 0,
@@ -124,6 +131,7 @@ const products = {
             discount: 20,
             tag: "New",
             variants: ["#3F4343", "#CCC6BA", "#CFCFCF"],
+            new: true,
         },
         {
             id: 1,
@@ -139,6 +147,7 @@ const products = {
             discount: 20,
             tag: "New",
             variants: ["#3F4343", "#CCC6BA", "#CFCFCF"],
+            new: true,
         },
         {
             id: 5,
@@ -154,6 +163,7 @@ const products = {
             discount: 20,
             tag: "New",
             variants: ["#3F4343", "#CCC6BA", "#CFCFCF"],
+            new: true,
         },
         {
             id: 3,
@@ -170,6 +180,7 @@ const products = {
             discount: 20,
             tag: "New",
             variants: ["#3F4343", "#CCC6BA", "#CFCFCF"],
+            new: true,
         },
         {
             id: 4,
@@ -185,6 +196,7 @@ const products = {
             discount: 20,
             tag: "New",
             variants: ["#3F4343", "#CCC6BA", "#CFCFCF"],
+            new: true,
         },
     ],
 };
