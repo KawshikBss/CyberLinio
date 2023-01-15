@@ -10,7 +10,7 @@ import {
 import React from "react";
 import Header from "../components/Header";
 import products from "../products";
-import ShopSection from "../components/Shop/ShopSection";
+import ProductsSlider from "../components/ProductsSlider";
 import catagories from "../catagories";
 
 const HomeScreen = () => {
@@ -20,7 +20,7 @@ const HomeScreen = () => {
                 <Header />
                 <Image
                     style={styles.banner}
-                    source={require("../../assets/ShopBanner.png")}
+                    source={require("../../assets/HomeBanner.gif")}
                 />
                 {catagories ? (
                     <ScrollView
@@ -39,8 +39,8 @@ const HomeScreen = () => {
                 ) : (
                     <Text>None</Text>
                 )}
-                <ShopSection header={"Hot sales"} items={products.sale} />
-                <ShopSection
+                <ProductsSlider header={"Hot sales"} items={products.sale} />
+                <ProductsSlider
                     header={"Recently Viewed"}
                     items={products.new}
                     vary
@@ -53,12 +53,12 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
     container: {
         height: "100%",
-        backgroundColor: "#ADA9BB",
+        backgroundColor: "#8D72E1",
         flexDirection: "column",
     },
     banner: {
-        width: 350,
-        height: 170,
+        width: 360,
+        height: 180,
         resizeMode: "cover",
         alignSelf: "center",
     },
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         paddingVertical: 8,
         paddingHorizontal: 16,
         backgroundColor: "#FCF7FF",
-        color: "#484554",
+        color: "#6C4AB6",
         marginLeft: 16,
         borderRadius: 20,
     },
