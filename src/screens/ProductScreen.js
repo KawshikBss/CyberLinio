@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import Feather from "react-native-vector-icons/Feather";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 
 const ProductScreen = ({ route }) => {
@@ -70,7 +70,8 @@ const ProductScreen = ({ route }) => {
                 <View style={styles.wrapperHead}>
                     <Text style={styles.wrapperHeadText}>Free Shipping</Text>
                     <View style={styles.rating}>
-                        <FontAwesome name="star" style={styles.ratingIcon} />
+                        
+                        <AntDesign name="star" style={styles.ratingIcon} />
                         <Text style={styles.ratingText}>4.8</Text>
                     </View>
                 </View>
@@ -140,7 +141,7 @@ const ProductScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#ADA9BB",
+        backgroundColor: "#8D72E1",
     },
     header: {
         flexDirection: "row",
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     headerBtnText: {
-        color: "#484554",
+        color: "#6C4AB6",
         fontSize: 24,
     },
     image: {
@@ -218,7 +219,7 @@ const styles = StyleSheet.create({
     wrapperHeadText: {
         fontSize: 16,
         fontWeight: "500",
-        color: "#ADA9BB",
+        color: "#8D72E1",
     },
     rating: {
         flexDirection: "row",
@@ -226,23 +227,23 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     ratingIcon: {
-        color: "#D5CABD",
+        color: "#6C4AB6",
         fontSize: 18,
         marginRight: 5,
     },
     ratingText: {
-        color: "#484554",
+        color: "#6C4AB6",
         fontSize: 18,
     },
     title: {
-        color: "#484554",
+        color: "#6C4AB6",
         fontSize: 24,
         fontWeight: "600",
         marginTop: 18,
         marginBottom: 14,
     },
     description: {
-        color: "#ADA9BB",
+        color: "#8D72E1",
         fontSize: 16,
         fontWeight: "600",
         marginBottom: 22,
@@ -254,7 +255,7 @@ const styles = StyleSheet.create({
         marginBottom: 36,
     },
     price: {
-        color: "#6C63FF",
+        color: "#6C4AB6",
         fontSize: 20,
         fontWeight: "600",
     },
@@ -283,7 +284,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     buyBtn: {
-        backgroundColor: "#6C63FF",
+        backgroundColor: "#6C4AB6",
         alignItems: "center",
         justifyContent: "center",
         paddingHorizontal: 55,
@@ -300,12 +301,12 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        borderColor: "#C4C4C4",
+        borderColor: "#6C4AB6",
         borderWidth: 1,
         borderRadius: 20,
     },
     amountText: {
-        color: "#484554",
+        color: "#6C4AB6",
         marginHorizontal: 20,
         marginVertical: 6,
         fontSize: 20,
@@ -315,7 +316,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     amountBtnText: {
-        color: "#484554",
+        color: "#6C4AB6",
         fontSize: 20,
         fontWeight: "500",
     },
