@@ -12,6 +12,7 @@ import Header from "../components/Header";
 import products from "../products";
 import ProductsSlider from "../components/ProductsSlider";
 import catagories from "../catagories";
+import CatagorySlider from "../components/CatagorySlider";
 
 const HomeScreen = () => {
     return (
@@ -22,23 +23,7 @@ const HomeScreen = () => {
                     style={styles.banner}
                     source={require("../../assets/HomeBanner.gif")}
                 />
-                {catagories ? (
-                    <ScrollView
-                        horizontal
-                        style={styles.catagoriesContainer}
-                        showsHorizontalScrollIndicator={false}
-                    >
-                        {catagories.map((cat, index) => {
-                            return (
-                                <TouchableOpacity key={index}>
-                                    <Text style={styles.catagory}>{cat}</Text>
-                                </TouchableOpacity>
-                            );
-                        })}
-                    </ScrollView>
-                ) : (
-                    <Text>None</Text>
-                )}
+                <CatagorySlider catagories={catagories} />
                 <ProductsSlider header={"Hot sales"} items={products.sale} />
                 <ProductsSlider
                     header={"Recently Viewed"}
@@ -61,17 +46,6 @@ const styles = StyleSheet.create({
         height: 180,
         resizeMode: "cover",
         alignSelf: "center",
-    },
-    catagoriesContainer: {
-        marginVertical: 18,
-    },
-    catagory: {
-        paddingVertical: 8,
-        paddingHorizontal: 16,
-        backgroundColor: "#FCF7FF",
-        color: "#6C4AB6",
-        marginLeft: 16,
-        borderRadius: 20,
     },
 });
 
