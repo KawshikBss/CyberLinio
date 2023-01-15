@@ -1,12 +1,16 @@
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import React from 'react'
 
 const CartScreen = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>CartScreen</Text>
-    </View>
+    </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {},
+});
 
 export default CartScreen
