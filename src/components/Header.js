@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
     searchBtnText: {
-        color: '#ADA9BB',
+        color: '#6C4AB6',
         fontSize: 28,
     },
     notificationBtnWrapper: {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         marginRight: 8,
     },
     notificationBtnText: {
-        color: '#ADA9BB',
+        color: '#6C4AB6',
         fontSize: 28,
     },
 });
