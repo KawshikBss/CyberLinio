@@ -24,7 +24,7 @@ const ProductsSlider = ({
                 style={styles.itemsContainer}
                 showsHorizontalScrollIndicator={false}
                 decelerationRate={0}
-                snapToInterval={210}
+                snapToInterval={230}
                 snapToAlignment={'center'}
             >
                 {items ? (
