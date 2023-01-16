@@ -64,16 +64,24 @@ const Card = ({ product, shopView=false }) => {
                                 : "Product Title"}
                         </Text>
                     </TouchableOpacity>
-                    <View style={styles.rating}>
+                    {shopView? '': (<View style={styles.rating}>
                         <Text style={styles.ratingText}>
                             {product.rating ? product.rating : "0.0"}
                         </Text>
                         <AntDesign name="star" style={styles.ratingIcon} />
-                    </View>
+                    </View>)}
                 </View>
+                <View style={styles.header}>
                 <Text style={styles.price}>
                     {product.price ? product.price : "Product Price"}$
                 </Text>
+                    {shopView? (<View style={styles.rating}>
+                        <Text style={styles.ratingText}>
+                            {product.rating ? product.rating : "0.0"}
+                        </Text>
+                        <AntDesign name="star" style={styles.ratingIcon} />
+                    </View>): ''}
+                </View>
             </View>
         </View>
     );
@@ -81,8 +89,8 @@ const Card = ({ product, shopView=false }) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: 200,
-        height: 200,
+        width: 220,
+        height: 220,
         borderRadius: 20,
         backgroundColor: "#6C4AB6",
     },
@@ -119,12 +127,13 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         height: "100%",
-        paddingHorizontal: 10,
+        padding: 10,
     },
     header: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+        marginBottom: 8,
     },
     rating: {
         flexDirection: "row",
