@@ -1,7 +1,16 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 
 const CatagorySlider = ({catagories}) => {
+    const [currentCatagory, setCurrentCatagory] = useState(catagories[0]);
+    const isCurrentCat = (name) => {
+        return currentCatagory? name === currentCatagory: false;
+    }
+    const handleCatagory = (name) => {
+        setCurrentCatagory(curr => {
+            return curr === name? '': name;
+        })
+    }
   return (
         <ScrollView
             horizontal
@@ -11,8 +20,8 @@ const CatagorySlider = ({catagories}) => {
     {catagories ? (
             catagories.map((cat, index) => {
                 return (
-                    <TouchableOpacity key={index}>
-                        <Text style={styles.catagory}>{cat}</Text>
+                    <TouchableOpacity key={index} onPress={() => handleCatagory(cat)}>
+                        <Text style={StyleSheet.flatten([styles.catagory, isCurrentCat(cat)? styles.catagoryActive: {}])}>{cat}</Text>
                     </TouchableOpacity>
                 );
             })
@@ -35,6 +44,10 @@ const styles = StyleSheet.create({
         marginLeft: 16,
         borderRadius: 20,
     },
+    catagoryActive: {
+        backgroundColor: "#6C4AB6",
+        color: "#FCF7FF",
+    }
 });
 
 export default CatagorySlider
