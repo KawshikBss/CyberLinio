@@ -1,7 +1,8 @@
-import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import CartItem from '../components/CartItem';
 import products from '../products';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const CartScreen = () => {
   return (
@@ -17,6 +18,26 @@ const CartScreen = () => {
             }): ''
         }
       </ScrollView>
+      <View style={styles.couponContainer}>
+        <TextInput style={styles.couponInput} placeholder='Apply Coupon' />
+        <TouchableOpacity style={styles.applyBtn}>
+          <FontAwesome name='chevron-right' style={styles.applyBtnText} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.statsContainer}>
+        <View style={styles.statsSection}>
+          <Text style={styles.statsText}>Cart Total:</Text>
+          <Text style={styles.statsText}>0$</Text>
+        </View>
+        <View style={styles.statsSection}>
+          <Text style={styles.statsText}>Discount:</Text>
+          <Text style={styles.statsText}>0$</Text>
+        </View>
+        <View style={styles.statsSection}>
+          <Text style={styles.statsText}>Final Price:</Text>
+          <Text style={styles.statsText}>0$</Text>
+        </View>
+      </View>
     </SafeAreaView>
   )
 }
@@ -28,12 +49,58 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   header: {
-      color: "#6C4AB6",
-      fontSize: 24,
+      color: "#FCF7FF",
+      fontSize: 26,
       fontWeight: "600",
       marginTop: 10,
-      marginLeft: 10,
+      marginLeft: 20,
   },
+  couponContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginHorizontal: 10,
+    marginVertical: 10,
+  },
+  couponInput: {
+    backgroundColor: '#FCF7FF',
+    width: '70%',
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    borderRadius: 50,
+    marginRight: 20,
+  },
+  applyBtn: {
+    backgroundColor: '#FCF7FF',
+    width: 40,
+    height: 40,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  applyBtnText: {
+    fontSize: 18,
+    color: '#8D72E1',
+  },
+  statsContainer: {
+    backgroundColor: '#FCF7FF',
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+    paddingHorizontal: 30,
+    paddingTop: 30,
+    paddingBottom: 90,
+  },
+  statsSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomColor: '#8D72E1',
+    borderBottomWidth: 1,
+  },
+  statsText: {
+    fontSize: 18,
+    color: '#8D72E1',
+  }
 });
 
 export default CartScreen
