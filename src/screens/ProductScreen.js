@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import Feather from "react-native-vector-icons/Feather";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
+import BuyProductModal from "../components/BuyProductModal";
 
 const ProductScreen = ({ route }) => {
     const { product } = route.params.params;
@@ -23,8 +24,15 @@ const ProductScreen = ({ route }) => {
     };
     const [currentImage, setCurrentImage] = useState(0);
     const [currentVariant, setCurrentVariant] = useState(0);
+    const [showBuyModal, setShowBuyModal] = useState(false);
+    const toggleBuyModal = () => {
+        setShowBuyModal(curr => {
+            return !curr;
+        })
+    }
     return (
         <ScrollView style={styles.container}>
+            <BuyProductModal visible={showBuyModal} toggle={toggleBuyModal} product={product} amount={amount} variant={currentVariant} />
             <View style={styles.header}>
                 <TouchableOpacity
                     style={styles.headerBtn}
@@ -101,10 +109,10 @@ const ProductScreen = ({ route }) => {
                                         onPress={() => setCurrentVariant(index)}
                                     >
                                         <View
-                                            style={{
-                                                ...styles.variant,
-                                                backgroundColor: variant,
-                                            }}
+                                            style={
+                                                StyleSheet.flatten([styles.variant,
+                                                {backgroundColor: variant}])
+                                            }
                                         />
                                     </TouchableOpacity>
                                 );
@@ -130,7 +138,7 @@ const ProductScreen = ({ route }) => {
                             <Text style={styles.amountBtnText}>+</Text>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.buyBtn}>
+                    <TouchableOpacity style={styles.buyBtn} onPress={toggleBuyModal}>
                         <Text style={styles.buyBtnText}>Buy Now</Text>
                     </TouchableOpacity>
                 </View>
