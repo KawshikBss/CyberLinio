@@ -77,17 +77,20 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         borderRadius: 20,
         backgroundColor: "#FCF7FF",
-        padding: 10,
+        padding: 5,
         position: 'absolute',
         right: -15,
-        top: -35,
-        alignSelf: 'center'
+        top: -38,
+        alignSelf: 'center',
+        borderBottomWidth: 2,
+        borderRightWidth: 2,
+        borderColor: '#8D9EFF',
     },
     image: {
         width: 100,
         height: 100,
         resizeMode: "cover",
-        borderRadius: 10,
+        borderRadius: 20,
     },
     header: {
         flexDirection: 'row',
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
         color: "#6C4AB6",
         marginHorizontal: 16,
         marginVertical: 6,
-        fontSize: 26,
+        fontSize: 20,
         fontWeight: "500",
     },
     headerBtnText: {},
@@ -109,12 +112,12 @@ const styles = StyleSheet.create({
     infoWrapper: {},
     title: {
         color: '#6C4AB6',
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: '700',
     },
     price: {
         color: '#8D72E1',
-        fontSize: 20,
+        // fontSize: 20,
     },
     amount: {
         flexDirection: "row",
@@ -127,8 +130,8 @@ const styles = StyleSheet.create({
     amountText: {
         color: "#6C4AB6",
         marginHorizontal: 5,
-        marginVertical: 6,
-        fontSize: 16,
+        marginVertical: 3,
+        // fontSize: 16,
         fontWeight: "500",
     },
     amountBtn: {

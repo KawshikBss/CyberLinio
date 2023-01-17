@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         borderRightWidth: 5,
         borderColor: "#8D9EFF",
         marginTop: 100,
-        justifyContent: "center",
+        justifyContent: "space-evenly",
         alignItems: "center",
         alignSelf: "center",
     },
@@ -79,10 +79,11 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         height: 240,
         width: 240,
+        marginTop: 20,
     },
     title: {
         color: "#B9E0FF",
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: "600",
     },
     info: {
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
     },
     infoText: {
-        fontSize: 18,
+        // fontSize: 16,
         color: "#B9E0FF",
     },
     variant: {
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
       marginVertical: 10,
     },
     btnText: {
-      fontSize: 18,
+      fontSize: 16,
       color: "#B9E0FF",
     }
 });

@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   header: {
       color: "#FCF7FF",
-      fontSize: 26,
+      fontSize: 20,
       fontWeight: "600",
       marginTop: 10,
       marginLeft: 20,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   applyBtnText: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#8D72E1',
   },
   statsContainer: {
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   statsText: {
-    fontSize: 18,
+    // fontSize: 18,
     color: '#8D72E1',
   }
 });

@@ -142,24 +142,25 @@ const styles = StyleSheet.create({
     },
     ratingText: {
         color: "#B9E0FF",
-        fontSize: 16,
+        // fontSize: 16,
         marginRight: 2,
     },
     ratingIcon: {
         color: "#B9E0FF",
-        fontSize: 18,
+        fontSize: 16,
         marginRight: 2,
     },
     title: {
         color: "#B9E0FF",
-        fontSize: 16,
+        // fontSize: 16,
+        fontWeight: '900',
     },
     priceContainer: {
         flexDirection: "row",
     },
     price: {
         color: "#B9E0FF",
-        fontSize: 16,
+        // fontSize: 16,
     },
 });
 

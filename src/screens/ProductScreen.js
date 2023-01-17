@@ -236,23 +236,23 @@ const styles = StyleSheet.create({
     },
     ratingIcon: {
         color: "#6C4AB6",
-        fontSize: 18,
+        fontSize: 16,
         marginRight: 5,
     },
     ratingText: {
         color: "#6C4AB6",
-        fontSize: 18,
+        fontSize: 16,
     },
     title: {
         color: "#6C4AB6",
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: "600",
         marginTop: 18,
         marginBottom: 14,
     },
     description: {
         color: "#8D72E1",
-        fontSize: 16,
+        // fontSize: 16,
         fontWeight: "600",
         marginBottom: 22,
     },
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
     },
     price: {
         color: "#6C4AB6",
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: "600",
     },
     variantContainer: {
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
     },
     buyBtnText: {
         color: "#FCF7FF",
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: "600",
     },
     amount: {
@@ -317,11 +317,15 @@ const styles = StyleSheet.create({
         color: "#6C4AB6",
         marginHorizontal: 20,
         marginVertical: 6,
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: "500",
     },
     amountBtn: {
-        marginHorizontal: 10,
+        width: 40,
+        height: 40,
+        borderRadius: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     amountBtnText: {
         color: "#6C4AB6",
