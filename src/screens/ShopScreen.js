@@ -12,6 +12,7 @@ import Header from "../components/Header";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import CatagorySlider from "../components/CatagorySlider";
 import catagories from "../catagories";
+import FilterDrawer from "../components/FilterDrawer";
 
 const ShopScreen = ({ route }) => {
     const [selections, setSelections] = useState({
@@ -30,6 +31,7 @@ const ShopScreen = ({ route }) => {
     };
     return (
         <SafeAreaView style={styles.container}>
+            <FilterDrawer visible={false} />
             <Header />
             <View style={styles.header}>
                 <TouchableOpacity
