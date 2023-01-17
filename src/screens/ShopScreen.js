@@ -29,9 +29,13 @@ const ShopScreen = ({ route }) => {
             return { ...curr, filter: !curr.filter };
         });
     };
+    const [openFilter, setOpenFilter] = useState(false);
+    const toggleFilter = () => {
+        setOpenFilter(curr => {return !curr});
+    }
     return (
         <SafeAreaView style={styles.container}>
-            <FilterDrawer visible={false} />
+            <FilterDrawer visible={openFilter} toggle={toggleFilter} />
             <Header />
             <View style={styles.header}>
                 <TouchableOpacity
@@ -96,7 +100,7 @@ const ShopScreen = ({ route }) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.headerBtn}
-                    onPress={() => handleSelection()}
+                    onPress={toggleFilter}
                 >
                     <FontAwesome
                         name="filter"
