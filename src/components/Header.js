@@ -16,7 +16,7 @@ const Header = () => {
                 <TouchableOpacity style={styles.searchBtn}>
                     <Feather name="search" style={styles.searchBtnText} />
                 </TouchableOpacity>
-                <TextInput style={styles.searchInput} />
+                <TextInput style={styles.searchInput} placeholder={'What are you looking for?'} />
             </View>
             <View style={styles.notificationBtnWrapper}>
             <TouchableOpacity style={styles.notificationBtn}>
