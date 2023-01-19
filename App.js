@@ -70,6 +70,7 @@ export default function App() {
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false,
+                    navigationBarHidden: true,
                 }}
             >
                 <Stack.Screen name="Splash" component={SplashScreen} />
