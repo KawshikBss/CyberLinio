@@ -37,6 +37,9 @@ const CartScreen = () => {
           <Text style={styles.statsText}>Final Price:</Text>
           <Text style={styles.statsText}>0$</Text>
         </View>
+        <TouchableOpacity style={styles.checkoutBtn}>
+          <Text style={styles.checkoutBtnText}>Check Out</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   )
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FCF7FF',
     width: '70%',
     paddingHorizontal: 30,
-    paddingVertical: 10,
+    paddingVertical: 5,
     borderRadius: 50,
     marginRight: 20,
   },
@@ -100,6 +103,19 @@ const styles = StyleSheet.create({
   statsText: {
     // fontSize: 18,
     color: '#8D72E1',
+  },
+  checkoutBtn: {
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  checkoutBtnText: {
+    fontSize: 18,
+    color: '#6C4AB6',
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    borderRadius: 20,
+    backgroundColor: '#8D9EFF',
   }
 });
 
