@@ -1,10 +1,14 @@
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native'
 import React from 'react'
+import ProfileUser from '../components/ProfileUser';
+import ProfileSection from '../components/ProfileSection';
+import ProfileSlider from '../components/ProfileSlider';
 
 const ProfileScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>ProfileScreen</Text>
+      <ProfileUser />
+      <ProfileSlider />
     </SafeAreaView>
   )
 }
