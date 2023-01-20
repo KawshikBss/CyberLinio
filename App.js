@@ -10,6 +10,7 @@ import Feather from "react-native-vector-icons/Feather";
 import ShopScreen from "./src/screens/ShopScreen";
 import CartScreen from "./src/screens/CartScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
+import WishScreen from "./src/screens/WishScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -25,6 +26,8 @@ const HomeTab = () => {
                     let iconName = "home";
                     if (route.name === "Shop") {
                         iconName = "shopping-bag";
+                    } else if (route.name === "Wishlist") {
+                        iconName = "heart";
                     } else if (route.name === "Cart") {
                         iconName = "shopping-cart";
                     } else if (route.name === "Profile") {
@@ -58,6 +61,7 @@ const HomeTab = () => {
         >
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Shop" component={ShopScreen} />
+            <Tab.Screen name="Wishlist" component={WishScreen} />
             <Tab.Screen name="Cart" component={CartScreen} />
             <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
