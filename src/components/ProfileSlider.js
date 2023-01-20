@@ -20,7 +20,7 @@ const ProfileSlider = () => {
 const styles = StyleSheet.create({
   container: {
     // flex: 2,
-    marginBottom: 100,
+    marginBottom: 90,
   }
 });
 
