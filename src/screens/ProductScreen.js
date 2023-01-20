@@ -11,6 +11,7 @@ import Feather from "react-native-vector-icons/Feather";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import BuyProductModal from "../components/BuyProductModal";
+import ImagePopModal from "../components/ImagePopModal";
 
 const ProductScreen = ({ route }) => {
     const { product } = route.params.params;
@@ -30,9 +31,16 @@ const ProductScreen = ({ route }) => {
             return !curr;
         })
     }
+    const [showImageModal, setShowImageModal] = useState(false);
+    const toggleImageModal = () => {
+        setShowImageModal(curr => {
+            return !curr;
+        })
+    }
     return (
         <ScrollView style={styles.container}>
             <BuyProductModal visible={showBuyModal} toggle={toggleBuyModal} product={product} amount={amount} variant={currentVariant} />
+            <ImagePopModal visible={showImageModal} toggle={toggleImageModal} images={product.images} />
             <View style={styles.header}>
                 <TouchableOpacity
                     style={styles.headerBtn}
@@ -49,12 +57,12 @@ const ProductScreen = ({ route }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <View style={styles.imageContainer}>
+            <TouchableOpacity style={styles.imageContainer} onPress={toggleImageModal}>
                 <Image
                     style={styles.image}
                     source={product.images[currentImage]}
                 />
-            </View>
+            </TouchableOpacity>
             <View style={styles.imageListContainer}>
                 {product?.images
                     ? product.images.map((image, index) => {
@@ -179,8 +187,8 @@ const styles = StyleSheet.create({
     },
     image: {
         borderRadius: 20,
-        height: 240,
-        width: 240,
+        height: 270,
+        width: 340,
     },
     imageContainer: {
         backgroundColor: "#FCF7FF",
