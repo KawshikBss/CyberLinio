@@ -5,7 +5,7 @@ const users = [
         image: require('../assets/User.webp'),
         phone: '+880-17-8359-4455',
         email: 'emusk@tesla.com',
-        address: 'Musk Land, Mars',
+        location: 'Musk Land, Mars',
     }
 ];
 
