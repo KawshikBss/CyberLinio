@@ -1,8 +1,15 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import React, { useState } from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
 
 const CartItem = ({item, vary=false}) => {
+    const navigation = useNavigation();
+    const goToItem = () => {
+        navigation.navigate('Product', {
+            params: {product: item}
+        })
+    }
     const [amount, setAmount] = useState(1);
     const changeAmount = (number) => {
         setAmount((curr) => {
@@ -13,7 +20,7 @@ const CartItem = ({item, vary=false}) => {
   return (
     <View style={styles.container}>
       <View style={StyleSheet.flatten([styles.imageWrapper, {backgroundColor: vary? '#6C4AB6': styles.imageWrapper.backgroundColor}])}>
-        <TouchableOpacity style={styles.imageBackGround}>
+        <TouchableOpacity style={styles.imageBackGround} onPress={goToItem}>
             <Image source={item.images[0]} style={styles.image} />
         </TouchableOpacity>
       </View>
@@ -39,7 +46,7 @@ const CartItem = ({item, vary=false}) => {
                     </View>
         </View>
         <View style={styles.infoWrapper}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={goToItem}>
             <Text style={styles.title}>{item?.title? item.title: 'Title'}</Text>
             </TouchableOpacity>
             <Text style={styles.price}>${item?.price? (item.price * amount): '0'}</Text>
