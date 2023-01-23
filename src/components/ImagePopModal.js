@@ -10,8 +10,8 @@ import React, { useState } from "react";
 import Modal from "react-native-modal";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-const ImagePopModal = ({ visible, toggle, images }) => {
-    const [currImage, setCurrImage] = useState(0);
+const ImagePopModal = ({ visible, toggle, images, selected }) => {
+    const [currImage, setCurrImage] = useState(selected);
     const changeImage = (index) => {
         setCurrImage((curr) => {
             let next = curr + index;
@@ -60,6 +60,7 @@ const ImagePopModal = ({ visible, toggle, images }) => {
                         ? images.map((image, index) => {
                               return (
                                   <TouchableOpacity
+                                      key={index}
                                       onPress={() => setCurrImage(index)}
                                   >
                                       <Image
