@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native";
 
 const ProfileSection = ({ section }) => {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={styles.inner}>
@@ -16,6 +18,7 @@ const ProfileSection = ({ section }) => {
                                   <TouchableOpacity
                                       key={index}
                                       style={styles.item}
+                                      onPress={() => navigation.navigate(item.route)}
                                   >
                                     <View style={styles.itemInner}>
                                     {
