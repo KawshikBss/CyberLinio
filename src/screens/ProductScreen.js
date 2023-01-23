@@ -24,6 +24,7 @@ const ProductScreen = ({ route }) => {
         });
     };
     const [currentImage, setCurrentImage] = useState(0);
+    console.log(`pro- ${currentImage}`);
     const [currentVariant, setCurrentVariant] = useState(0);
     const [showBuyModal, setShowBuyModal] = useState(false);
     const toggleBuyModal = () => {
@@ -40,7 +41,7 @@ const ProductScreen = ({ route }) => {
     return (
         <ScrollView style={styles.container}>
             <BuyProductModal visible={showBuyModal} toggle={toggleBuyModal} product={product} amount={amount} variant={currentVariant} />
-            <ImagePopModal visible={showImageModal} toggle={toggleImageModal} images={product.images} />
+            <ImagePopModal visible={showImageModal} toggle={toggleImageModal} images={product.images} selected={currentImage} />
             <View style={styles.header}>
                 <TouchableOpacity
                     style={styles.headerBtn}
@@ -208,17 +209,17 @@ const styles = StyleSheet.create({
         marginBottom: 30,
     },
     listImage: {
-        width: 40,
-        height: 40,
+        width: 70,
+        height: 70,
         resizeMode: "cover",
-        borderRadius: 10,
+        borderRadius: 20,
     },
     listImageContainer: {
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 20,
         backgroundColor: "#FCF7FF",
-        padding: 12,
+        padding: 5,
     },
     wrapper: {
         backgroundColor: "#FCF7FF",
