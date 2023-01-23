@@ -8,7 +8,7 @@ const profileSections = [
                 name: 'All Orders',
                 icon: lazy(() => import('react-native-vector-icons/Fontisto')),
                 iconName: 'shopping-bag-1',
-                route: ''
+                route: 'AllOrders'
             },
             {
                 name: 'Pending Orders',
