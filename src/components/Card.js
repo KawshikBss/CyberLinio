@@ -17,7 +17,7 @@ const Card = ({ product, shopView=false }) => {
                 onPress={() =>
                     navigation.navigate("Product", {
                         screen: "Product",
-                        params: { product },
+                        params: { product: product },
                     })
                 }
             >
