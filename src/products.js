@@ -8,6 +8,7 @@ const products = {
                 require("../assets/Macbook2.jpg"),
                 require("../assets/Macbook3.jpg"),
             ],
+            catagory: ['Electronics', 'Laptop'],
             description:
                 "Esse adipisicing tempor occaecat magna nulla culpa consectetur. Incididunt ad incididunt nisi Lorem enim deserunt Lorem nostrud quis excepteur laborum cupidatat qui Lorem. Occaecat enim consectetur eiusmod nostrud sint velit Lorem Lorem aute. Nostrud tempor Lorem dolor fugiat laborum amet mollit consectetur id nisi. Laboris consequat qui sint non ipsum qui quis. Et incididunt magna voluptate sit exercitation consequat ea amet labore do deserunt id. In minim fugiat esse minim ea velit sint veniam voluptate reprehenderit occaecat.",
             price: 100,
@@ -24,6 +25,7 @@ const products = {
                 require("../assets/Headphone.jpg"),
                 require("../assets/Headphone2.jpg"),
             ],
+            catagory: ['Electronics', 'Fashion', 'Sports'],
             description:
                 "Esse adipisicing tempor occaecat magna nulla culpa consectetur. Incididunt ad incididunt nisi Lorem enim deserunt Lorem nostrud quis excepteur laborum cupidatat qui Lorem. Occaecat enim consectetur eiusmod nostrud sint velit Lorem Lorem aute. Nostrud tempor Lorem dolor fugiat laborum amet mollit consectetur id nisi. Laboris consequat qui sint non ipsum qui quis. Et incididunt magna voluptate sit exercitation consequat ea amet labore do deserunt id. In minim fugiat esse minim ea velit sint veniam voluptate reprehenderit occaecat.",
             price: 130,
@@ -40,6 +42,7 @@ const products = {
                 require("../assets/Iphone.jpg"),
                 require("../assets/Iphone2.jpg"),
             ],
+            catagory: ['Electronics', 'Phone'],
             description:
                 "Esse adipisicing tempor occaecat magna nulla culpa consectetur. Incididunt ad incididunt nisi Lorem enim deserunt Lorem nostrud quis excepteur laborum cupidatat qui Lorem. Occaecat enim consectetur eiusmod nostrud sint velit Lorem Lorem aute. Nostrud tempor Lorem dolor fugiat laborum amet mollit consectetur id nisi. Laboris consequat qui sint non ipsum qui quis. Et incididunt magna voluptate sit exercitation consequat ea amet labore do deserunt id. In minim fugiat esse minim ea velit sint veniam voluptate reprehenderit occaecat.",
             price: 50,
@@ -57,6 +60,7 @@ const products = {
                 require("../assets/Macbook2.jpg"),
                 require("../assets/Macbook3.jpg"),
             ],
+            catagory: ['Electronics', 'Laptop'],
             description:
                 "Esse adipisicing tempor occaecat magna nulla culpa consectetur. Incididunt ad incididunt nisi Lorem enim deserunt Lorem nostrud quis excepteur laborum cupidatat qui Lorem. Occaecat enim consectetur eiusmod nostrud sint velit Lorem Lorem aute. Nostrud tempor Lorem dolor fugiat laborum amet mollit consectetur id nisi. Laboris consequat qui sint non ipsum qui quis. Et incididunt magna voluptate sit exercitation consequat ea amet labore do deserunt id. In minim fugiat esse minim ea velit sint veniam voluptate reprehenderit occaecat.",
             price: 100,
@@ -73,6 +77,7 @@ const products = {
                 require("../assets/Headphone.jpg"),
                 require("../assets/Headphone2.jpg"),
             ],
+            catagory: ['Electronics', 'Fashion', 'Sports'],
             description:
                 "Esse adipisicing tempor occaecat magna nulla culpa consectetur. Incididunt ad incididunt nisi Lorem enim deserunt Lorem nostrud quis excepteur laborum cupidatat qui Lorem. Occaecat enim consectetur eiusmod nostrud sint velit Lorem Lorem aute. Nostrud tempor Lorem dolor fugiat laborum amet mollit consectetur id nisi. Laboris consequat qui sint non ipsum qui quis. Et incididunt magna voluptate sit exercitation consequat ea amet labore do deserunt id. In minim fugiat esse minim ea velit sint veniam voluptate reprehenderit occaecat.",
             price: 130,
@@ -89,6 +94,7 @@ const products = {
                 require("../assets/Iphone.jpg"),
                 require("../assets/Iphone2.jpg"),
             ],
+            catagory: ['Electronics', 'Phone'],
             description:
                 "Esse adipisicing tempor occaecat magna nulla culpa consectetur. Incididunt ad incididunt nisi Lorem enim deserunt Lorem nostrud quis excepteur laborum cupidatat qui Lorem. Occaecat enim consectetur eiusmod nostrud sint velit Lorem Lorem aute. Nostrud tempor Lorem dolor fugiat laborum amet mollit consectetur id nisi. Laboris consequat qui sint non ipsum qui quis. Et incididunt magna voluptate sit exercitation consequat ea amet labore do deserunt id. In minim fugiat esse minim ea velit sint veniam voluptate reprehenderit occaecat.",
             price: 50,
@@ -107,6 +113,7 @@ const products = {
                 require("../assets/Iphone.jpg"),
                 require("../assets/Iphone2.jpg"),
             ],
+            catagory: ['Electronics', 'Phone'],
             description:
                 "Esse adipisicing tempor occaecat magna nulla culpa consectetur. Incididunt ad incididunt nisi Lorem enim deserunt Lorem nostrud quis excepteur laborum cupidatat qui Lorem. Occaecat enim consectetur eiusmod nostrud sint velit Lorem Lorem aute. Nostrud tempor Lorem dolor fugiat laborum amet mollit consectetur id nisi. Laboris consequat qui sint non ipsum qui quis. Et incididunt magna voluptate sit exercitation consequat ea amet labore do deserunt id. In minim fugiat esse minim ea velit sint veniam voluptate reprehenderit occaecat.",
             price: 50,
@@ -124,6 +131,7 @@ const products = {
                 require("../assets/Macbook2.jpg"),
                 require("../assets/Macbook3.jpg"),
             ],
+            catagory: ['Electronics', 'Laptop'],
             description:
                 "Esse adipisicing tempor occaecat magna nulla culpa consectetur. Incididunt ad incididunt nisi Lorem enim deserunt Lorem nostrud quis excepteur laborum cupidatat qui Lorem. Occaecat enim consectetur eiusmod nostrud sint velit Lorem Lorem aute. Nostrud tempor Lorem dolor fugiat laborum amet mollit consectetur id nisi. Laboris consequat qui sint non ipsum qui quis. Et incididunt magna voluptate sit exercitation consequat ea amet labore do deserunt id. In minim fugiat esse minim ea velit sint veniam voluptate reprehenderit occaecat.",
             price: 100,
@@ -140,6 +148,7 @@ const products = {
                 require("../assets/Headphone.jpg"),
                 require("../assets/Headphone2.jpg"),
             ],
+            catagory: ['Electronics', 'Fashion', 'Sports'],
             description:
                 "Esse adipisicing tempor occaecat magna nulla culpa consectetur. Incididunt ad incididunt nisi Lorem enim deserunt Lorem nostrud quis excepteur laborum cupidatat qui Lorem. Occaecat enim consectetur eiusmod nostrud sint velit Lorem Lorem aute. Nostrud tempor Lorem dolor fugiat laborum amet mollit consectetur id nisi. Laboris consequat qui sint non ipsum qui quis. Et incididunt magna voluptate sit exercitation consequat ea amet labore do deserunt id. In minim fugiat esse minim ea velit sint veniam voluptate reprehenderit occaecat.",
             price: 130,
@@ -156,6 +165,7 @@ const products = {
                 require("../assets/Iphone.jpg"),
                 require("../assets/Iphone2.jpg"),
             ],
+            catagory: ['Electronics', 'Phone'],
             description:
                 "Esse adipisicing tempor occaecat magna nulla culpa consectetur. Incididunt ad incididunt nisi Lorem enim deserunt Lorem nostrud quis excepteur laborum cupidatat qui Lorem. Occaecat enim consectetur eiusmod nostrud sint velit Lorem Lorem aute. Nostrud tempor Lorem dolor fugiat laborum amet mollit consectetur id nisi. Laboris consequat qui sint non ipsum qui quis. Et incididunt magna voluptate sit exercitation consequat ea amet labore do deserunt id. In minim fugiat esse minim ea velit sint veniam voluptate reprehenderit occaecat.",
             price: 50,
@@ -173,6 +183,7 @@ const products = {
                 require("../assets/Macbook2.jpg"),
                 require("../assets/Macbook3.jpg"),
             ],
+            catagory: ['Electronics', 'Laptop'],
             description:
                 "Esse adipisicing tempor occaecat magna nulla culpa consectetur. Incididunt ad incididunt nisi Lorem enim deserunt Lorem nostrud quis excepteur laborum cupidatat qui Lorem. Occaecat enim consectetur eiusmod nostrud sint velit Lorem Lorem aute. Nostrud tempor Lorem dolor fugiat laborum amet mollit consectetur id nisi. Laboris consequat qui sint non ipsum qui quis. Et incididunt magna voluptate sit exercitation consequat ea amet labore do deserunt id. In minim fugiat esse minim ea velit sint veniam voluptate reprehenderit occaecat.",
             price: 100,
@@ -189,6 +200,7 @@ const products = {
                 require("../assets/Headphone.jpg"),
                 require("../assets/Headphone2.jpg"),
             ],
+            catagory: ['Electronics', 'Fashion', 'Sports'],
             description:
                 "Esse adipisicing tempor occaecat magna nulla culpa consectetur. Incididunt ad incididunt nisi Lorem enim deserunt Lorem nostrud quis excepteur laborum cupidatat qui Lorem. Occaecat enim consectetur eiusmod nostrud sint velit Lorem Lorem aute. Nostrud tempor Lorem dolor fugiat laborum amet mollit consectetur id nisi. Laboris consequat qui sint non ipsum qui quis. Et incididunt magna voluptate sit exercitation consequat ea amet labore do deserunt id. In minim fugiat esse minim ea velit sint veniam voluptate reprehenderit occaecat.",
             price: 130,
