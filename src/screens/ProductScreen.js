@@ -12,6 +12,8 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import BuyProductModal from "../components/BuyProductModal";
 import ImagePopModal from "../components/ImagePopModal";
+import ProductReviews from "../components/ProductReviews";
+import reviews from "../reviews";
 
 const ProductScreen = ({ route }) => {
     const { product } = route.params.params;
@@ -24,7 +26,6 @@ const ProductScreen = ({ route }) => {
         });
     };
     const [currentImage, setCurrentImage] = useState(0);
-    console.log(`pro- ${currentImage}`);
     const [currentVariant, setCurrentVariant] = useState(0);
     const [showBuyModal, setShowBuyModal] = useState(false);
     const toggleBuyModal = () => {
@@ -131,6 +132,7 @@ const ProductScreen = ({ route }) => {
                         ""
                     )}
                 </View>
+                <ProductReviews reviews={reviews} />
                 <View style={styles.buyWrapper}>
                     <View style={styles.amount}>
                         <TouchableOpacity
@@ -269,7 +271,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        marginBottom: 36,
+        // marginBottom: 36,
     },
     price: {
         color: "#6C4AB6",
