@@ -10,35 +10,20 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import LoginModal from "../components/LoginModal";
-import RegisterModal from "../components/RegisterModal";
+import { useNavigation } from "@react-navigation/native";
 
-const SplashScreen = ({ navigation }) => {
-    const [loginModal, setloginModal] = useState(false);
-    const toggleLoginModal = () => {
-        setloginModal(curr => {
-            return !curr;
-        })
-    }
-    const [registerModal, setRegisterModal] = useState(false);
-    const toggleRegisterModal = () => {
-        setRegisterModal(curr => {
-            return !curr;
-        })
-    }
-
+const SplashScreen = ({  }) => {
+    const navigation = useNavigation();
     return (
         <LinearGradient
         colors={['#B9E0FF', '#8D9EFF']}
             style={styles.container}
         >
-            <LoginModal visible={loginModal} toggle={toggleLoginModal} />
-            <RegisterModal visible={registerModal} toggle={toggleRegisterModal} />
-            <TouchableOpacity style={styles.loginBtn} onPress={toggleLoginModal}>
+            <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('Login', {screen: 'Login'})}>
                 <Text style={styles.loginBtnText}>LOG IN</Text>
             </TouchableOpacity>
             <Text style={styles.orText}>or</Text>
-            <TouchableOpacity style={styles.regBtn} onPress={toggleRegisterModal}>
+            <TouchableOpacity style={styles.regBtn} onPress={() => navigation.navigate('Signup', {screen: 'Signup'})}>
                 <Text style={styles.regBtnText}>REGISTER NOW</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.skipBtn}
