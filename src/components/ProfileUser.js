@@ -9,45 +9,53 @@ import {
 import React, { useState } from "react";
 import users from "../users";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { LinearGradient } from "expo-linear-gradient";
 
 const ProfileUser = ({ user = users[0], extended, toggle }) => {
-    const [formData, setFormData] = useState({
-        name: user?.name ? user?.name : "",
-        phone: user?.phone ? user?.phone : "",
-        email: user?.email ? user?.email : "",
-        location: user?.location ? user?.location : "",
-    });
+    const [userName, setUserName] = useState(user?.name ? user?.name : "");
+    const [userPhone, setUserPhone] = useState(user?.phone ? user?.phone : "");
+    const [userEmail, setUserEmail] = useState(user?.email ? user?.email : "");
+    const [userLocation, setUserLocation] = useState(
+        user?.location ? user?.location : ""
+    );
     const handleFormName = (value) => {
-        setFormData((curr) => {
-            return {
-                ...curr,
-                name: value,
-            };
-        });
+        setUserName(value);
     };
     const handleFormPhone = (value) => {
-        setFormData((curr) => {
-            return {
-                ...curr,
-                phone: value,
-            };
-        });
+        setUserPhone(value);
     };
     const handleFormEmail = (value) => {
-        setFormData((curr) => {
-            return {
-                ...curr,
-                email: value,
-            };
-        });
+        setUserEmail(value);
     };
     const handleFormLocation = (value) => {
-        setFormData((curr) => {
-            return {
-                ...curr,
-                location: value,
-            };
+        setUserLocation(value);
+    };
+    const [editFields, setEditFields] = useState({
+        name: false,
+        phone: false,
+        email: false,
+        location: false,
+    });
+    const toggleName = () => {
+        setEditFields((curr) => {
+            return { ...curr, name: !curr.name };
+        });
+    };
+    const togglePhone = () => {
+        setEditFields((curr) => {
+            return { ...curr, phone: !curr.phone };
+        });
+    };
+    const toggleEmail = () => {
+        setEditFields((curr) => {
+            return { ...curr, email: !curr.email };
+        });
+    };
+    const toggleLocation = () => {
+        setEditFields((curr) => {
+            return { ...curr, location: !curr.location };
         });
     };
     return (
@@ -55,9 +63,27 @@ const ProfileUser = ({ user = users[0], extended, toggle }) => {
             colors={["#8D9EFF", "#B9E0FF"]}
             style={StyleSheet.flatten([
                 styles.container,
-                { flex: extended ? 4 : styles.container.flex, marginBottom: extended? 150: styles.container.marginBottom },
+                {
+                    flex: extended ? 4 : styles.container.flex,
+                    marginBottom: extended
+                        ? 150
+                        : styles.container.marginBottom,
+                },
             ])}
         >
+            {extended ? (
+                <View style={styles.header}>
+                    <TouchableOpacity style={styles.headerBtn} onPress={toggle}>
+                        <FontAwesome
+                            style={styles.headerBtnIcon}
+                            name="angle-left"
+                        />
+                    </TouchableOpacity>
+                    <Text style={styles.heading}>Edit</Text>
+                </View>
+            ) : (
+                ""
+            )}
             <View
                 style={StyleSheet.flatten([
                     styles.inner,
@@ -76,18 +102,40 @@ const ProfileUser = ({ user = users[0], extended, toggle }) => {
                         styles.wrapper,
                         {
                             alignItems: extended
-                                ? "center"
+                                ? "flex-start"
                                 : styles.wrapper.alignItems,
                         },
                     ])}
                 >
                     <View style={styles.section}>
                         {extended ? (
-                            <TextInput
-                                style={styles.sectionHeading}
-                                value={formData.name}
-                                onChange={(value) => handleFormName(value)}
-                            />
+                            <View style={styles.editWrapper}>
+                                <FontAwesome
+                                    name="user-circle-o"
+                                    style={styles.sectionIcon}
+                                />
+                                <TextInput
+                                    style={StyleSheet.flatten([
+                                        styles.sectionHeading,
+                                        editFields.name
+                                            ? styles.editInput
+                                            : { marginLeft: 10 },
+                                    ])}
+                                    value={userName}
+                                    onChangeText={(value) =>
+                                        handleFormName(value)
+                                    }
+                                    editable={editFields.name}
+                                />
+                                <TouchableOpacity
+                                    style={styles.editBtn}
+                                    onPress={toggleName}
+                                >
+                                    <Text style={styles.editBtnText}>
+                                        {editFields.name ? "Save" : "Edit"}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
                         ) : (
                             <Text style={styles.sectionHeading}>
                                 {user?.name ? user?.name : "N/A"}
@@ -101,11 +149,29 @@ const ProfileUser = ({ user = users[0], extended, toggle }) => {
                         />
 
                         {extended ? (
-                            <TextInput
-                                style={styles.sectionInfo}
-                                value={formData.phone}
-                                onChange={(value) => handleFormPhone(value)}
-                            />
+                            <View style={styles.editWrapper}>
+                                <TextInput
+                                    style={StyleSheet.flatten([
+                                        styles.sectionInfo,
+                                        editFields.phone
+                                            ? styles.editInput
+                                            : { marginLeft: 10 },
+                                    ])}
+                                    value={userPhone}
+                                    onChangeText={(value) =>
+                                        handleFormPhone(value)
+                                    }
+                                    editable={editFields.phone}
+                                />
+                                <TouchableOpacity
+                                    style={styles.editBtn}
+                                    onPress={togglePhone}
+                                >
+                                    <Text style={styles.editBtnText}>
+                                        {editFields.phone ? "Save" : "Edit"}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
                         ) : (
                             <Text style={styles.sectionInfo}>
                                 {user?.phone ? user?.phone : "N/A"}
@@ -118,11 +184,29 @@ const ProfileUser = ({ user = users[0], extended, toggle }) => {
                             style={styles.sectionIcon}
                         />
                         {extended ? (
-                            <TextInput
-                                style={styles.sectionInfo}
-                                value={formData.email}
-                                onChange={(value) => handleFormEmail(value)}
-                            />
+                            <View style={styles.editWrapper}>
+                                <TextInput
+                                    style={StyleSheet.flatten([
+                                        styles.sectionInfo,
+                                        editFields.email
+                                            ? styles.editInput
+                                            : { marginLeft: 10 },
+                                    ])}
+                                    value={userEmail}
+                                    onChangeText={(value) =>
+                                        handleFormEmail(value)
+                                    }
+                                    editable={editFields.email}
+                                />
+                                <TouchableOpacity
+                                    style={styles.editBtn}
+                                    onPress={toggleEmail}
+                                >
+                                    <Text style={styles.editBtnText}>
+                                        {editFields.email ? "Save" : "Edit"}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
                         ) : (
                             <Text style={styles.sectionInfo}>
                                 {user?.email ? user?.email : "N/A"}
@@ -135,11 +219,29 @@ const ProfileUser = ({ user = users[0], extended, toggle }) => {
                             style={styles.sectionIcon}
                         />
                         {extended ? (
-                            <TextInput
-                                style={styles.sectionInfo}
-                                value={formData.location}
-                                onChange={(value) => handleFormLocation(value)}
-                            />
+                            <View style={styles.editWrapper}>
+                                <TextInput
+                                    style={StyleSheet.flatten([
+                                        styles.sectionInfo,
+                                        editFields.location
+                                            ? styles.editInput
+                                            : { marginLeft: 10 },
+                                    ])}
+                                    value={userLocation}
+                                    onChangeText={(value) =>
+                                        handleFormLocation(value)
+                                    }
+                                    editable={editFields.location}
+                                />
+                                <TouchableOpacity
+                                    style={styles.editBtn}
+                                    onPress={toggleLocation}
+                                >
+                                    <Text style={styles.editBtnText}>
+                                        {editFields.location ? "Save" : "Edit"}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
                         ) : (
                             <Text style={styles.sectionInfo}>
                                 {user?.location ? user?.location : "N/A"}
@@ -148,12 +250,21 @@ const ProfileUser = ({ user = users[0], extended, toggle }) => {
                     </View>
                 </View>
             </View>
-            <TouchableOpacity style={styles.editBtn} onPress={toggle}>
-                <MaterialCommunityIcons
-                    name="account-edit"
-                    style={styles.editBtnIcon}
-                />
-            </TouchableOpacity>
+            {extended ? (
+                <TouchableOpacity style={styles.extendBtn} onPress={toggle}>
+                    <MaterialCommunityIcons
+                        name="content-save"
+                        style={styles.extendBtnIcon}
+                    />
+                </TouchableOpacity>
+            ) : (
+                <TouchableOpacity style={styles.extendBtn} onPress={toggle}>
+                    <MaterialCommunityIcons
+                        name="account-edit"
+                        style={styles.extendBtnIcon}
+                    />
+                </TouchableOpacity>
+            )}
         </LinearGradient>
     );
 };
@@ -165,6 +276,29 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
+    },
+    header: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        alignSelf: "flex-start",
+        marginLeft: 20,
+        marginTop: 20,
+    },
+    headerBtn: {
+        marginRight: 10,
+    },
+    headerBtnIcon: {
+        fontSize: 28,
+        padding: 10,
+        color: "#6C4AB6",
+    },
+    heading: {
+        alignSelf: "flex-start",
+        margin: 10,
+        fontSize: 20,
+        color: "#6C4AB6",
+        fontWeight: "700",
     },
     inner: {
         flex: 1,
@@ -190,7 +324,7 @@ const styles = StyleSheet.create({
     },
     section: {
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
         alignItems: "center",
         paddingHorizontal: 10,
         marginVertical: 5,
@@ -211,7 +345,42 @@ const styles = StyleSheet.create({
         color: "#6C4AB6",
         marginLeft: 10,
     },
+    editWrapper: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+    editInput: {
+        color: "#6C4AB6",
+        marginLeft: 10,
+        // paddingVertical: 4,
+        paddingHorizontal: 6,
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: "#6C4AB6",
+    },
     editBtn: {
+        alignItems: "center",
+        justifyContent: "center",
+        paddingHorizontal: 8,
+        paddingVertical: 2,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: "#6C4AB6",
+        backgroundColor: "#8D9EFF",
+        marginLeft: 10,
+    },
+    editBtnText: {
+        color: "#6C4AB6",
+        fontSize: 16,
+    },
+    editIcon: {
+        color: "#6C4AB6",
+        fontSize: 30,
+        position: "absolute",
+        right: -16,
+    },
+    extendBtn: {
         alignItems: "center",
         justifyContent: "center",
         width: 60,
@@ -223,7 +392,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: -30,
     },
-    editBtnIcon: {
+    extendBtnIcon: {
         color: "#6C4AB6",
         fontSize: 30,
     },
