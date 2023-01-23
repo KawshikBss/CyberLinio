@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "flex-start",
+        justifyContent: "center",
         alignSelf: "flex-start",
         marginLeft: 20,
         marginTop: 20,
