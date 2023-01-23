@@ -8,9 +8,9 @@ const ProfileSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const handleScroll = event => {
     const xOffset = event.nativeEvent.contentOffset.x;
-    const currentSelect = Math.ceil((xOffset / 400));
+    let currentSelect = Math.ceil((xOffset / 400));
+    if (currentSelect > profileSections.length - 1) currentSelect -= 1;
     setCurrentSlide(currentSelect);
-    console.log(xOffset);
   }
   return (
     <View style={styles.container}>
