@@ -7,12 +7,11 @@ import { useNavigation } from "@react-navigation/native";
 
 const WishItem = ({ item }) => {
     const navigation = useNavigation();
-    const goToItem = (item) => {
-        // console.log(item);
-        navigation.navigate('Product', {
-            params: {product: item}
-        })
-    }
+    const goToItem = () => {
+        navigation.navigate("Product", {
+            params: { product: item },
+        });
+    };
     const [isFavourite, setIsFavourite] = useState(true);
     const toggleFavourite = () => {
         setIsFavourite((curr) => {
@@ -21,15 +20,17 @@ const WishItem = ({ item }) => {
     };
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => goToItem(item)}>
-            <Image style={styles.image} source={item.images[0]} />
+            <TouchableOpacity onPress={goToItem}>
+                <Image style={styles.image} source={item.images[0]} />
             </TouchableOpacity>
             <View style={styles.inner}>
-                <Text style={styles.title}>
-                    {item.title.length < 15
-                        ? item.title
-                        : `${item.title.slice(0, 12)}...`}
-                </Text>
+                <TouchableOpacity onPress={goToItem}>
+                    <Text style={styles.title}>
+                        {item.title.length < 15
+                            ? item.title
+                            : `${item.title.slice(0, 12)}...`}
+                    </Text>
+                </TouchableOpacity>
 
                 <View style={styles.itemsContainer}>
                     {item.catagory
