@@ -8,28 +8,49 @@ import {
     ScrollView,
     TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { LinearGradient } from "expo-linear-gradient";
+import LoginModal from "../components/LoginModal";
+import RegisterModal from "../components/RegisterModal";
 
 const SplashScreen = ({ navigation }) => {
+    const [loginModal, setloginModal] = useState(false);
+    const toggleLoginModal = () => {
+        setloginModal(curr => {
+            return !curr;
+        })
+    }
+    const [registerModal, setRegisterModal] = useState(false);
+    const toggleRegisterModal = () => {
+        setRegisterModal(curr => {
+            return !curr;
+        })
+    }
+
     return (
-        <ImageBackground
-            source={require("../../assets/SplashImg.jpg")}
+        <LinearGradient
+        colors={['#B9E0FF', '#8D9EFF']}
             style={styles.container}
-            imageStyle={styles.splashImg}
         >
-            <TouchableOpacity style={styles.loginBtn}>
+            <LoginModal visible={loginModal} toggle={toggleLoginModal} />
+            <RegisterModal visible={registerModal} toggle={toggleRegisterModal} />
+            <TouchableOpacity style={styles.loginBtn} onPress={toggleLoginModal}>
                 <Text style={styles.loginBtnText}>LOG IN</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.skipBtn}>
+            <Text style={styles.orText}>or</Text>
+            <TouchableOpacity style={styles.regBtn} onPress={toggleRegisterModal}>
+                <Text style={styles.regBtnText}>REGISTER NOW</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.skipBtn}
+                    onPress={() => navigation.navigate("HomeTab")}>
                 <Text
                     style={styles.skipBtnText}
-                    onPress={() => navigation.navigate("HomeTab")}
                 >
                     SKIP
                 </Text>
             </TouchableOpacity>
             <StatusBar hidden />
-        </ImageBackground>
+        </LinearGradient>
     );
 };
 
@@ -37,6 +58,9 @@ const styles = StyleSheet.create({
     container: {
         height: "100%",
         width: "100%",
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        padding: 20,
     },
     splashImg: {
         borderWidth: 1,
@@ -44,25 +68,48 @@ const styles = StyleSheet.create({
         resizeMode: "contain",
     },
     loginBtn: {
-        position: "absolute",
-        bottom: 60,
+        // position: "absolute",
+        // bottom: 60,
         alignSelf: "center",
         alignItems: "center",
         justifyContent: "center",
+        paddingVertical: 10,
     },
     loginBtnText: {
         paddingHorizontal: 120,
         paddingVertical: 10,
         borderRadius: 50,
-        backgroundColor: "#FFF",
-        color: "#FF5500",
+        backgroundColor: "#6C4AB6",
+        color: "#B9E0FF",
+        fontSize: 18,
+        fontWeight: "600",
+    },
+    orText: {
+        fontSize: 16,
+        color: '#FFF',
+    },
+    regBtn: {
+        // position: "absolute",
+        // bottom: 60,
+        alignSelf: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingVertical: 10,
+    },
+    regBtnText: {
+        paddingHorizontal: 80,
+        paddingVertical: 10,
+        borderRadius: 50,
+        backgroundColor: "#8D72E1",
+        color: "#B9E0FF",
         fontSize: 18,
         fontWeight: "600",
     },
     skipBtn: {
-        position: "absolute",
-        bottom: 20,
-        right: 20,
+        // position: "absolute",
+        // bottom: 20,
+        // right: 20,
+        alignSelf: 'flex-end',
     },
     skipBtnText: {
         fontSize: 18,
