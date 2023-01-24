@@ -32,7 +32,7 @@ const SignupScreen = ({}) => {
         </View>
         <TextInput style={styles.inputField} placeholder='Confirm Password' />
       </View>
-      <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('HomeTab', {screen: 'Home'})}>
+      <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('ShopStack', {screen: 'Home'})}>
         <Text style={styles.loginBtnText}>SIGN UP</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.linkWrapper} onPress={() => navigation.navigate('Login', {screen: 'Login'})}>

@@ -27,7 +27,7 @@ const SplashScreen = ({  }) => {
                 <Text style={styles.regBtnText}>REGISTER NOW</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.skipBtn}
-                    onPress={() => navigation.navigate("HomeTab")}>
+                    onPress={() => navigation.navigate("ShopStack")}>
                 <Text
                     style={styles.skipBtnText}
                 >
