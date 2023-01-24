@@ -23,7 +23,7 @@ const LoginScreen = ({}) => {
         </View>
         <TextInput style={styles.inputField} placeholder='Enter Password' />
       </View>
-      <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('HomeTab', {screen: 'Home'})}>
+      <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('ShopStack', {screen: 'Home'})}>
         <Text style={styles.loginBtnText}>LOG IN</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.link} onPress={toggleShowForgot}>
