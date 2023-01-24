@@ -8,25 +8,25 @@ const profileSections = [
                 name: 'All Orders',
                 icon: lazy(() => import('react-native-vector-icons/Fontisto')),
                 iconName: 'shopping-bag-1',
-                route: 'AllOrders'
+                route: {stack: 'OrdersStack', route: 'All'}
             },
             {
                 name: 'Pending Orders',
                 icon: lazy(() => import('react-native-vector-icons/MaterialIcons')),
                 iconName: 'pending',
-                route: ''
+                route: {stack: 'OrdersStack', route: 'Pending'}
             },
             {
                 name: 'Cancelled Orders',
                 icon: lazy(() => import('react-native-vector-icons/MaterialCommunityIcons')),
                 iconName: 'cancel',
-                route: ''
+                route: {stack: 'OrdersStack', route: 'Cancelled'}
             },
             {
                 name: 'Waiting For Review',
                 icon: lazy(() => import('react-native-vector-icons/MaterialIcons')),
                 iconName: 'rate-review',
-                route: ''
+                route: {stack: 'OrdersStack', route: 'Waiting'}
             },
         ]
     },
