@@ -59,7 +59,7 @@ const BuyProductModal = ({ visible, toggle, product, amount, variant }) => {
                     <TouchableOpacity
                         onPress={() => {
                             toggle();
-                            navigation.navigate("HomeTab", { screen: "Cart" });
+                            navigation.navigate("ShopStack", { screen: "Cart" });
                         }}
                         style={StyleSheet.flatten([
                             styles.btn,
