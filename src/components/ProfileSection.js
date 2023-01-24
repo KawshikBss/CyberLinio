@@ -18,7 +18,7 @@ const ProfileSection = ({ section }) => {
                                   <TouchableOpacity
                                       key={index}
                                       style={styles.item}
-                                      onPress={() => navigation.navigate(item.route)}
+                                      onPress={() => navigation.navigate(item.route.stack, {screen: item.route.route})}
                                   >
                                     <View style={styles.itemInner}>
                                     {
