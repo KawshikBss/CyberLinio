@@ -5,6 +5,20 @@ import { useNavigation } from "@react-navigation/native";
 
 const ProfileSection = ({ section }) => {
     const navigation = useNavigation();
+    const gotoLink = (route, nested = false) => {
+        if (nested) {
+            navigation.navigate(
+                route.stack,
+                {
+                    screen: route.route,
+                }
+            )
+        }
+        else {
+            navigation.navigate(route.route
+            )
+        }
+    }
     return (
         <View style={styles.container}>
             <View style={styles.inner}>
@@ -18,17 +32,20 @@ const ProfileSection = ({ section }) => {
                                   <TouchableOpacity
                                       key={index}
                                       style={styles.item}
-                                      onPress={() => navigation.navigate(item.route.stack, {screen: item.route.route})}
+                                      onPress={() => gotoLink(item.route, section.title === 'Orders')}
                                   >
-                                    <View style={styles.itemInner}>
-                                    {
-                                        item?.icon? (
-                                            <item.icon name={item.iconName} style={styles.itemIcon} />
-                                        ): ''
-                                    }
-                                      <Text style={styles.itemText}>
-                                          {item?.name ? item?.name : "N/A"}
-                                      </Text>
+                                      <View style={styles.itemInner}>
+                                          {item?.icon ? (
+                                              <item.icon
+                                                  name={item.iconName}
+                                                  style={styles.itemIcon}
+                                              />
+                                          ) : (
+                                              ""
+                                          )}
+                                          <Text style={styles.itemText}>
+                                              {item?.name ? item?.name : "N/A"}
+                                          </Text>
                                       </View>
                                       <FontAwesome
                                           style={styles.itemIcon}
