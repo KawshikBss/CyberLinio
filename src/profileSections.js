@@ -26,7 +26,7 @@ const profileSections = [
                 name: 'Waiting For Review',
                 icon: lazy(() => import('react-native-vector-icons/MaterialIcons')),
                 iconName: 'rate-review',
-                route: {stack: 'OrdersStack', route: 'Waiting'}
+                route: {stack: 'OrdersStack', route: 'Delivered'}
             },
         ]
     },
