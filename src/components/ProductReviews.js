@@ -12,17 +12,23 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import Review from "./Review";
 
 const ProductReviews = ({ reviews }) => {
-    const [ratings, setRatings] = useState([false, false, false, false, false]);
+    const [ratings, setRatings] = useState({
+        selectedIndex: -1,
+        indexes: [false, false, false, false, false],
+    });
     const selectRating = (index = 0) => {
-        setRatings(curr => {
-            return (
-                curr.map((item, i) => {
-                    return i <= index;
-                })
-            )
+        setRatings((curr) => {
+            return {
+                selectedIndex: curr.selectedIndex === index ? -1 : index,
+                indexes: curr.selectedIndex === index ? [false, false, false, false, false] :[
+                    ...curr.indexes.map((item, i) => {
+                        return i <= index;
+                    }),
+                ],
+            };
         });
         console.log(ratings);
-    }
+    };
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>Reviews</Text>
@@ -39,34 +45,36 @@ const ProductReviews = ({ reviews }) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.ratingBtnContainer}>
-                {ratings.map((item, index) => {
+                {ratings.indexes.map((item, index) => {
                     return (
-                        <TouchableOpacity key={index} onPress={() => selectRating(index)}>
+                        <TouchableOpacity
+                            key={index}
+                            onPress={() => selectRating(index)}
+                        >
                             <AntDesign
                                 name="star"
-                                style={StyleSheet.flatten([styles.ratingBtnText, item? styles.ratingBtnActive: {}])}
+                                style={StyleSheet.flatten([
+                                    styles.ratingBtnText,
+                                    item ? styles.ratingBtnActive : {},
+                                ])}
                             />
                         </TouchableOpacity>
                     );
                 })}
             </View>
-            <View
-                style={styles.reviewsContainer}>
-            <ScrollView
-                nestedScrollEnabled
-                contentContainerStyle={styles.reviewItems}
-            >
-                {
-                    reviews?
-                    reviews.map((item, index) => {
-                        return (
-                            <Review item={item} key={index} />
-                        );
-                    }): (
+            <View style={styles.reviewsContainer}>
+                <ScrollView
+                    nestedScrollEnabled
+                    contentContainerStyle={styles.reviewItems}
+                >
+                    {reviews ? (
+                        reviews.map((item, index) => {
+                            return <Review item={item} key={index} />;
+                        })
+                    ) : (
                         <Text>No Reviews</Text>
-                    )
-                }
-            </ScrollView>
+                    )}
+                </ScrollView>
             </View>
         </View>
     );
@@ -79,20 +87,25 @@ const styles = StyleSheet.create({
         marginVertical: 20,
     },
     heading: {
-        fontSize: 16,
+        fontSize: 18,
         color: "#6C4AB6",
         fontWeight: "700",
+        alignSelf: 'flex-start',
+        borderBottomWidth: 1,
+        borderColor: '#6C4AB6',
+        marginLeft: 10,
     },
     addInputGroup: {
         flexDirection: "row",
         alignItems: "center",
         marginVertical: 20,
+        alignSelf: 'flex-start',
     },
     addInput: {
-        width: "50%",
+        width: "70%",
         color: "#6C4AB6",
         paddingVertical: 2,
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
         borderRadius: 20,
         borderWidth: 2,
         borderColor: "#6C4AB6",
@@ -117,7 +130,7 @@ const styles = StyleSheet.create({
         width: "60%",
     },
     ratingBtnActive: {
-        color: '#6C4AB6'
+        color: "#6C4AB6",
     },
     ratingBtnText: {
         color: "#B9E0FF",
@@ -125,12 +138,12 @@ const styles = StyleSheet.create({
     },
     reviewsContainer: {
         marginTop: 10,
-        alignItems: 'center',
+        alignItems: "flex-start",
         height: 250,
     },
     reviewItems: {
-        alignItems: 'center',
-    }
+        alignItems: "center",
+    },
 });
 
 export default ProductReviews;
