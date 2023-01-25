@@ -76,12 +76,12 @@ const WishItem = ({ item }) => {
                             />
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.removeBtn}
+                            style={StyleSheet.flatten([styles.removeBtn, {backgroundColor: isFavourite? '#B9E0FF': styles.removeBtnIcon.backgroundColor}])}
                             onPress={toggleFavourite}
                         >
                             <AntDesign
                                 name={isFavourite ? "heart" : "hearto"}
-                                style={styles.removeBtnIcon}
+                                style={StyleSheet.flatten([styles.removeBtnIcon, {color: isFavourite? '#8D72E1': styles.removeBtnIcon.color}])}
                             />
                         </TouchableOpacity>
                     </View>
