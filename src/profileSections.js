@@ -37,25 +37,25 @@ const profileSections = [
                 name: 'Messages',
                 icon: lazy(() => import('react-native-vector-icons/MaterialCommunityIcons')),
                 iconName: 'android-messages',
-                route: ''
+                route: {route: 'Messages'}
             },
             {
                 name: 'Reviews',
                 icon: lazy(() => import('react-native-vector-icons/MaterialIcons')),
                 iconName: 'rate-review',
-                route: ''
+                route: {route: 'Reviews'}
             },
             {
-                name: 'Return',
-                icon: lazy(() => import('react-native-vector-icons/MaterialCommunityIcons')),
-                iconName: 'keyboard-return',
-                route: ''
+                name: 'Redeem Coupons',
+                icon: lazy(() => import('react-native-vector-icons/MaterialIcons')),
+                iconName: 'redeem',
+                route: {route: 'Redeem'}
             },
             {
                 name: 'Help Center',
                 icon: lazy(() => import('react-native-vector-icons/Feather')),
                 iconName: 'help-circle',
-                route: ''
+                route: {route: 'Help'}
             },
         ]
     },
