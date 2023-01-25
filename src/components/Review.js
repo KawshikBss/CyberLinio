@@ -7,7 +7,7 @@ const Review = ({ item }) => {
         <View style={styles.container}>
             <View style={styles.userWrapper}>
                 <Image
-                    source={require("../../assets/User.webp")}
+                    source={item.user_image}
                     style={styles.userImg}
                 />
                 <Text style={styles.userName}>{item.username}</Text>
