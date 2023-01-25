@@ -6,7 +6,8 @@ import products from '../products'
 
 const WishScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+    <SafeAreaView>
       <Text style={styles.heading}>My Wishlist</Text>
       <ScrollView contentContainerStyle={styles.wishItems}>
         {
@@ -18,7 +19,7 @@ const WishScreen = () => {
             }): ''
         }
       </ScrollView>
-    </SafeAreaView>
+    </SafeAreaView></View>
   )
 }
 
@@ -27,20 +28,19 @@ const styles = StyleSheet.create({
       height: "100%",
       backgroundColor: "#8D72E1",
       flexDirection: "column",
+      paddingBottom: 140,
   },
   heading: {
     color: '#B9E0FF',
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: '900',
-    marginHorizontal: 10,
-    marginVertical: 10,
-    backgroundColor: '#6C4AB6',
-    padding: 10,
-    borderRadius: 10,
+    marginHorizontal: 20,
+    marginTop: 20,
+    // alignSelf: 'center',
   },
   wishItems: {
     marginHorizontal: 10,
-    marginVertical: 20,
+    marginVertical: 10,
   }
 });
 
