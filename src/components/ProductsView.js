@@ -4,7 +4,8 @@ import Card from "./Card";
 
 const ProductsView = ({ products }) => {
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.container}>
+        <ScrollView >
             <View style={styles.wrapper}>
             {products ? (
                 products.map((product, index) => {
@@ -21,7 +22,7 @@ const ProductsView = ({ products }) => {
                 <Text>No Products</Text>
             )}
             </View>
-        </ScrollView>
+        </ScrollView></View>
     );
 };
 
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'center',
+        paddingBottom: 270,
     },
     wrapper: {
         flexWrap: 'wrap',
