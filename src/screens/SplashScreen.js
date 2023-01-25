@@ -7,6 +7,7 @@ import {
     StatusBar,
     ScrollView,
     TouchableOpacity,
+    Image,
 } from "react-native";
 import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
@@ -19,6 +20,7 @@ const SplashScreen = ({  }) => {
         colors={['#B9E0FF', '#8D9EFF']}
             style={styles.container}
         >
+            <Image style={styles.splashImg} source={require('../../assets/SplashImage.gif')} />
             <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('Login', {screen: 'Login'})}>
                 <Text style={styles.loginBtnText}>LOG IN</Text>
             </TouchableOpacity>
@@ -48,9 +50,8 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     splashImg: {
-        borderWidth: 1,
-        borderColor: "#000",
-        resizeMode: "contain",
+        height: '65%',
+        resizeMode: 'contain'
     },
     loginBtn: {
         // position: "absolute",
