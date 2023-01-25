@@ -54,16 +54,16 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "stretch",
         borderRadius: 20,
-        backgroundColor: "#B9E0FF",
+        backgroundColor: "#6C4AB6",
         flex: 1,
         padding: 20,
     },
     heading: {
         alignSelf: "center",
-        color: "#6C4AB6",
+        color: "#B9E0FF",
         fontSize: 18,
         borderBottomWidth: 1,
-        borderColor: "#6C4AB6",
+        borderColor: "#B9E0FF",
     },
     items: {
         flexDirection: "column",
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderBottomWidth: 1,
         // borderTopWidth: 1,
-        borderColor: "#6C4AB6",
+        borderColor: "#B9E0FF",
     },
     itemInner: {
         flexDirection: "row",
@@ -86,10 +86,10 @@ const styles = StyleSheet.create({
     },
     itemIcon: {
         fontSize: 24,
-        color: "#6C4AB6",
+        color: "#B9E0FF",
     },
     itemText: {
-        color: "#6C4AB6",
+        color: "#B9E0FF",
         fontSize: 16,
         paddingVertical: 2,
         marginLeft: 5,
