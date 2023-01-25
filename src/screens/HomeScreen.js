@@ -29,6 +29,7 @@ const HomeScreen = () => {
                     header={"Recently Viewed"}
                     items={products.new}
                     vary
+                    finalSection
                 />
             </ScrollView>
         </SafeAreaView>
