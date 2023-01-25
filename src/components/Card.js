@@ -9,10 +9,10 @@ import {
 import Fontisto from "react-native-vector-icons/Fontisto";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-const Card = ({ product, shopView=false }) => {
+const Card = ({ product, shopView=false, focused = false }) => {
     const navigation = useNavigation();
     return (
-        <View style={StyleSheet.flatten([styles.container, shopView? {width: 170, margin: 5}: {marginRight: 10}])}>
+        <View style={StyleSheet.flatten([styles.container, shopView? {width: 170, margin: 5}: {marginRight: 10}, focused? styles.focused: !shopView? styles.ignored: {}])}>
             <TouchableOpacity
                 onPress={() =>
                     navigation.navigate("Product", {
@@ -161,6 +161,15 @@ const styles = StyleSheet.create({
     price: {
         color: "#B9E0FF",
         // fontSize: 16,
+    },
+    focused: {
+        opacity: 1,
+        height: 220,
+    },
+    ignored: {
+        opacity: 0.5,
+        // padding: 10,
+        height: 210,
     },
 });
 
