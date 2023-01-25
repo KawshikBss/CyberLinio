@@ -15,9 +15,10 @@ const ProductsSlider = ({
     items,
     navigation,
     vary = false,
+    finalSection = false
 }) => {
     return (
-        <View style={styles.container}>
+        <View style={StyleSheet.flatten([styles.container, {marginBottom: finalSection? styles.finalContainer.marginBottom: styles.container.marginBottom}])}>
             <Text style={styles.header}>{header ? header : "Header"}</Text>
             <ScrollView
                 horizontal
@@ -47,6 +48,9 @@ const ProductsSlider = ({
 const styles = StyleSheet.create({
     container: {
         marginBottom: 20,
+    },
+    finalContainer: {
+        marginBottom: 100,
     },
     header: {
         color: "#FCF7FF",
