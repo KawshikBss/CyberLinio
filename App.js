@@ -10,6 +10,10 @@ import SignupScreen from "./src/screens/SignupScreen";
 import OrdersScreen from "./src/screens/AllOrdersScreen";
 import ShopStack from "./src/screens/ShopStack";
 import OrdersStack from "./src/screens/OrdersStack";
+import MessageScreen from "./src/screens/MessageScreen";
+import ReviewsScreen from "./src/screens/ReviewsScreen";
+import RedeemScreen from "./src/screens/RedeemScreen";
+import HelpScreen from "./src/screens/HelpScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +32,10 @@ export default function App() {
                 <Stack.Screen name="OrdersStack" component={OrdersStack} />
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Signup" component={SignupScreen} />
+                <Stack.Screen name="Messages" component={MessageScreen} />
+                <Stack.Screen name="Reviews" component={ReviewsScreen} />
+                <Stack.Screen name="Redeem" component={RedeemScreen} />
+                <Stack.Screen name="Help" component={HelpScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
