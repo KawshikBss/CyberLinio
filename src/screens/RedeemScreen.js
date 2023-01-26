@@ -31,7 +31,7 @@ const RedeemScreen = () => {
                 <ScrollView>
                     {coupons
                         ? coupons.map((item, index) => {
-                              return <Coupon coupon={item} />;
+                              return <Coupon key={index} coupon={item} />;
                           })
                         : ""}
                 </ScrollView>
