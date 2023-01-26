@@ -8,9 +8,24 @@ import {
 } from "react-native";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 const Card = ({ product, shopView=false, focused = false }) => {
     const navigation = useNavigation();
+    const addToWishList = () => {
+        Toast.show({
+            type: 'success',
+            text1: product.title,
+            text2: 'Has been added to your wish list',
+        })
+    }
+    const addToCart = () => {
+        Toast.show({
+            type: 'success',
+            text1: product.title,
+            text2: 'Has been added to your cart',
+        })
+    }
     return (
         <View style={StyleSheet.flatten([styles.container, shopView? {width: 170, margin: 5}: {marginRight: 10}, focused? styles.focused: !shopView? styles.ignored: {}])}>
             <TouchableOpacity
@@ -34,10 +49,23 @@ const Card = ({ product, shopView=false, focused = false }) => {
                         {product?.tag ? product.tag : "-20%"}
                     </Text>
                     <TouchableOpacity
+                        style={styles.wishBtn}
+                        onPress={(e) => {
+                            e.stopPropagation();
+                        }}
+                        onPressIn={addToWishList}
+                    >
+                        <AntDesign
+                            style={styles.wishIcon}
+                            name="heart"
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity
                         style={styles.cartBtn}
                         onPress={(e) => {
                             e.stopPropagation();
                         }}
+                        onPressIn={addToCart}
                     >
                         <Fontisto
                             style={styles.cartIcon}
@@ -109,6 +137,21 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
         marginTop: 10,
         marginLeft: 5,
+    },
+    wishBtn: {
+        backgroundColor: "#FCF7FF",
+        height: 40,
+        width: 40,
+        borderRadius: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        position: "absolute",
+        bottom: 10,
+        left: 10,
+    },
+    wishIcon: {
+        fontSize: 20,
+        color: "#8D72E1",
     },
     cartBtn: {
         backgroundColor: "#FCF7FF",
