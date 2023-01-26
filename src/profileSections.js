@@ -34,10 +34,10 @@ const profileSections = [
         title: 'Services',
         items: [
             {
-                name: 'Messages',
-                icon: lazy(() => import('react-native-vector-icons/MaterialCommunityIcons')),
-                iconName: 'android-messages',
-                route: {route: 'Messages'}
+                name: 'Notifications',
+                icon: lazy(() => import('react-native-vector-icons/Ionicons')),
+                iconName: 'notifications',
+                route: {route: 'Notifications'}
             },
             {
                 name: 'Reviews',
