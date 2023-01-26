@@ -2,11 +2,21 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import * as Clipboard from 'expo-clipboard';
+import { Toast } from 'react-native-toast-message/lib/src/Toast';
 
 const Coupon = ({coupon}) => {
   const [copied, setCopied] = useState(false);
+  const copyToClipboard = async () => {
+    await Clipboard.setStringAsync(coupon.code);
+  }
   const handleCopy = () => {
     setCopied(curr => {return !curr});
+    copyToClipboard();
+    Toast.show({
+      type: 'success',
+      text1: 'Copied Code',
+    })
   };
   return (
     <View style={styles.container}>
