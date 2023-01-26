@@ -29,7 +29,7 @@ const MessageScreen = () => {
                 <ScrollView>
                     {messages
                         ? messages.map((item, index) => {
-                              return <Message message={item} />;
+                              return <Message key={index} message={item} />;
                           })
                         : ""}
                 </ScrollView>
