@@ -32,7 +32,7 @@ export default function App() {
                 <Stack.Screen name="OrdersStack" component={OrdersStack} />
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Signup" component={SignupScreen} />
-                <Stack.Screen name="Messages" component={MessageScreen} />
+                <Stack.Screen name="Notifications" component={MessageScreen} />
                 <Stack.Screen name="Reviews" component={ReviewsScreen} />
                 <Stack.Screen name="Redeem" component={RedeemScreen} />
                 <Stack.Screen name="Help" component={HelpScreen} />
