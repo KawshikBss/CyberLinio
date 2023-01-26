@@ -14,6 +14,8 @@ import MessageScreen from "./src/screens/MessageScreen";
 import ReviewsScreen from "./src/screens/ReviewsScreen";
 import RedeemScreen from "./src/screens/RedeemScreen";
 import HelpScreen from "./src/screens/HelpScreen";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
+import toastConfig from "./src/toastConfig";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +39,7 @@ export default function App() {
                 <Stack.Screen name="Redeem" component={RedeemScreen} />
                 <Stack.Screen name="Help" component={HelpScreen} />
             </Stack.Navigator>
+            <Toast config={toastConfig} />
         </NavigationContainer>
     );
 }
