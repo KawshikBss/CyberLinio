@@ -23,6 +23,7 @@ export default function App() {
     return (
         <NavigationContainer>
             <Stack.Navigator
+            initialRouteName="Splash"
                 screenOptions={{
                     headerShown: false,
                     navigationBarHidden: true,
