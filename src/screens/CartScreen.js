@@ -3,8 +3,10 @@ import React from 'react'
 import CartItem from '../components/CartItem';
 import products from '../products';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
 
 const CartScreen = () => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.header}>My Cart</Text>
@@ -37,7 +39,7 @@ const CartScreen = () => {
           <Text style={styles.statsText}>Final Price:</Text>
           <Text style={styles.statsText}>0$</Text>
         </View>
-        <TouchableOpacity style={styles.checkoutBtn}>
+        <TouchableOpacity style={styles.checkoutBtn} onPress={() => navigation.navigate('Checkout')}>
           <Text style={styles.checkoutBtnText}>Check Out</Text>
         </TouchableOpacity>
       </View>
