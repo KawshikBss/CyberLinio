@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/favicon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.zilchdedennota.CyberLino"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4c74459b-87e4-4489-b822-c4c95465600c"
+      }
     }
   }
 }
