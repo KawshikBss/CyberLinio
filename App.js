@@ -16,6 +16,7 @@ import RedeemScreen from "./src/screens/RedeemScreen";
 import HelpScreen from "./src/screens/HelpScreen";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
 import toastConfig from "./src/toastConfig";
+import CheckoutScreen from "./src/screens/CheckoutScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,7 @@ export default function App() {
                 <Stack.Screen name="Splash" component={SplashScreen} />
                 <Stack.Screen name="ShopStack" component={ShopStack} />
                 <Stack.Screen name="Product" component={ProductScreen} />
+                <Stack.Screen name="Checkout" component={CheckoutScreen} />
                 <Stack.Screen name="OrdersStack" component={OrdersStack} />
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Signup" component={SignupScreen} />
