@@ -45,7 +45,7 @@ const OrdersStack = () => {
         <Tab.Screen name="All" component={OrdersScreen} />
         <Tab.Screen name="Pending" component={PendingOrdersScreen} />
         <Tab.Screen name="Cancelled" component={CancelledOrdersScreen} />
-        <Tab.Screen name="Devilered" component={DeliveredOrdersScreen} />
+        <Tab.Screen name="Delivered" component={DeliveredOrdersScreen} />
     </Tab.Navigator>
 );
 }
