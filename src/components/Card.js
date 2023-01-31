@@ -37,7 +37,7 @@ const Card = ({ product, shopView=false, focused = false }) => {
                 }
             >
                 <ImageBackground
-                    source={product.images[0]}
+                    source={{uri: product.thumbnail}}
                     style={styles.productImage}
                     imageStyle={{
                         borderRadius: 20,
@@ -46,7 +46,7 @@ const Card = ({ product, shopView=false, focused = false }) => {
                     }}
                 >
                     <Text style={{...styles.tag, backgroundColor: product.new? '#8D72E1': styles.tag.backgroundColor, color: product.new? '#B9E0FF': styles.tag.color}}>
-                        {product?.tag ? product.tag : "-20%"}
+                        -{product?.discountPercentage ? product.discountPercentage : "0"}%
                     </Text>
                     <TouchableOpacity
                         style={styles.wishBtn}
