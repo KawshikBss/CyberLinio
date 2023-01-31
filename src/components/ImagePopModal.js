@@ -32,7 +32,7 @@ const ImagePopModal = ({ visible, toggle, images, selected }) => {
         >
             <View style={styles.container}>
                 <ImageBackground
-                    source={images[currImage]}
+                    source={{uri: images[currImage]}}
                     style={styles.slider}
                     imageStyle={styles.sliderImage}
                 >
@@ -64,7 +64,7 @@ const ImagePopModal = ({ visible, toggle, images, selected }) => {
                                       onPress={() => setCurrImage(index)}
                                   >
                                       <Image
-                                          source={image}
+                                          source={{uri: image}}
                                           style={styles.sliderImages}
                                           key={index}
                                       />
@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
     },
     sliderImage: {
         borderRadius: 20,
+        resizeMode: 'contain',
     },
     bottom: {
         flexDirection: "row",
