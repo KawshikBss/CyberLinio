@@ -62,7 +62,7 @@ const ProductScreen = ({ route }) => {
             <TouchableOpacity style={styles.imageContainer} onPress={toggleImageModal}>
                 <Image
                     style={styles.image}
-                    source={product.images[currentImage]}
+                    source={{uri: product.images[currentImage]}}
                 />
             </TouchableOpacity>
             <View style={styles.imageListContainer}>
@@ -76,7 +76,7 @@ const ProductScreen = ({ route }) => {
                                   <View style={styles.listImageContainer}>
                                       <Image
                                           style={styles.listImage}
-                                          source={image}
+                                          source={{uri: image}}
                                       />
                                   </View>
                               </TouchableOpacity>
@@ -86,11 +86,15 @@ const ProductScreen = ({ route }) => {
             </View>
             <View style={styles.wrapper}>
                 <View style={styles.wrapperHead}>
-                    <Text style={styles.wrapperHeadText}>Free Shipping</Text>
+                    {
+                        product?.discountPercentage? (
+                            <Text style={styles.wrapperHeadText}>-{product?.discountPercentage}%</Text>
+                            ): ''
+                    }
                     <View style={styles.rating}>
                         
                         <AntDesign name="star" style={styles.ratingIcon} />
-                        <Text style={styles.ratingText}>4.8</Text>
+                        <Text style={styles.ratingText}>{product?.rating? product.rating: '0.0'}</Text>
                     </View>
                 </View>
                 <Text style={styles.title}>
@@ -192,6 +196,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         height: 270,
         width: 340,
+        resizeMode: 'contain',
     },
     imageContainer: {
         backgroundColor: "#FCF7FF",
@@ -205,8 +210,10 @@ const styles = StyleSheet.create({
     },
     imageListContainer: {
         flexDirection: "row",
-        justifyContent: "space-between",
-        marginHorizontal: 65,
+        // alignItems: 'center',
+        justifyContent: "center",
+        flexWrap: 'wrap',
+        marginHorizontal: 10,
         marginTop: 45,
         marginBottom: 30,
     },
@@ -222,6 +229,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         backgroundColor: "#FCF7FF",
         padding: 5,
+        margin: 5,
     },
     wrapper: {
         backgroundColor: "#FCF7FF",
