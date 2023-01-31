@@ -13,8 +13,11 @@ import products from "../products";
 import ProductsSlider from "../components/ProductsSlider";
 import catagories from "../catagories";
 import CatagorySlider from "../components/CatagorySlider";
+import useFetch from "../hooks/useFetch";
 
 const HomeScreen = () => {
+    const {data: products, isLoading, isError, isSuccess} = useFetch('products', 'products');
+    // console.log(data);
     return (
         <SafeAreaView>
             <ScrollView style={styles.container}>
@@ -24,13 +27,21 @@ const HomeScreen = () => {
                     source={require("../../assets/HomeBanner.gif")}
                 />
                 <CatagorySlider catagories={catagories} />
-                <ProductsSlider header={"Hot sales"} items={products.sale} />
+                {
+                    isSuccess? (
+                <ProductsSlider header={"Hot sales"} items={products.products.slice(0, 10)} />
+                    ): ''
+                }
+                {
+                    isSuccess? (
                 <ProductsSlider
                     header={"Recently Viewed"}
-                    items={products.new}
+                    items={products.products.slice(10, 20)}
                     vary
                     finalSection
                 />
+                ): ''
+            }
             </ScrollView>
         </SafeAreaView>
     );
