@@ -13,8 +13,10 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import CatagorySlider from "../components/CatagorySlider";
 import catagories from "../catagories";
 import FilterDrawer from "../components/FilterDrawer";
+import useFetch from "../hooks/useFetch";
 
 const ShopScreen = ({ route }) => {
+    const {data: products, isLoading, isError, isSuccess} = useFetch('products');
     const [selections, setSelections] = useState({
         match: false,
         sales: false,
@@ -114,7 +116,7 @@ const ShopScreen = ({ route }) => {
             <View>
                 <CatagorySlider catagories={catagories} />
             </View>
-            <ProductsView products={products.new} />
+            <ProductsView products={products.products} />
         </SafeAreaView>
     );
 };
