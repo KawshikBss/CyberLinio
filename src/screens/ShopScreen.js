@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import ProductsView from "../components/ProductsView";
-import products from "../products";
 import Header from "../components/Header";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import CatagorySlider from "../components/CatagorySlider";
@@ -16,7 +15,39 @@ import FilterDrawer from "../components/FilterDrawer";
 import useFetch from "../hooks/useFetch";
 
 const ShopScreen = ({ route }) => {
-    const {data: products, isLoading, isError, isSuccess} = useFetch('products');
+    const category = route?.params?.category
+        ? route?.params?.category
+        : undefined;
+    const searchWord = route?.params?.searchWord
+        ? route?.params?.searchWord
+        : undefined;
+    const fetchProducts = () => {
+        if (searchWord !== undefined || searchWord !== null) {
+            return useFetch(
+                ["products-search", searchWord],
+                `products/search?q=${searchWord}`
+            );
+        } else if (category !== undefined || category !== null) {
+            return useFetch(
+                ["products-category", category],
+                `products/category/${category}`
+            );
+        }
+        return useFetch("products", "products/?limit=20");
+    };
+    const {
+        data: products,
+        isLoading,
+        isError,
+        isSuccess,
+    } = useFetch(
+        ["products", searchWord, category],
+        searchWord
+            ? `products/search?q=${searchWord}`
+            : category
+            ? `products/category/${category}`
+            : "products/?limit=20"
+    );
     const [selections, setSelections] = useState({
         match: false,
         sales: false,
@@ -33,8 +64,10 @@ const ShopScreen = ({ route }) => {
     };
     const [openFilter, setOpenFilter] = useState(false);
     const toggleFilter = () => {
-        setOpenFilter(curr => {return !curr});
-    }
+        setOpenFilter((curr) => {
+            return !curr;
+        });
+    };
     return (
         <SafeAreaView style={styles.container}>
             <FilterDrawer visible={openFilter} toggle={toggleFilter} />
@@ -114,9 +147,13 @@ const ShopScreen = ({ route }) => {
                 </TouchableOpacity>
             </View>
             <View>
-                <CatagorySlider catagories={catagories} />
+                <CatagorySlider currentCatagory={category} />
             </View>
-            <ProductsView products={products.products} />
+            {isSuccess && products?.products ? (
+                <ProductsView products={products.products} />
+            ) : (
+                ""
+            )}
         </SafeAreaView>
     );
 };
