@@ -16,8 +16,12 @@ import CatagorySlider from "../components/CatagorySlider";
 import useFetch from "../hooks/useFetch";
 
 const HomeScreen = () => {
-    const {data: products, isLoading, isError, isSuccess} = useFetch('products', 'products');
-    // console.log(data);
+    const {
+        data: products,
+        isLoading,
+        isError,
+        isSuccess,
+    } = useFetch("products-home", "products/?limit=20");
     return (
         <SafeAreaView>
             <ScrollView style={styles.container}>
@@ -27,21 +31,27 @@ const HomeScreen = () => {
                     source={require("../../assets/HomeBanner.gif")}
                 />
                 <CatagorySlider catagories={catagories} />
-                {
-                    isSuccess? (
-                <ProductsSlider header={"Hot sales"} items={products.products.slice(0, 10)} />
-                    ): ''
-                }
-                {
-                    isSuccess? (
-                <ProductsSlider
-                    header={"Recently Viewed"}
-                    items={products.products.slice(10, 20)}
-                    vary
-                    finalSection
-                />
-                ): ''
-            }
+                {isSuccess && products?.products ? (
+                    <ProductsSlider
+                        header={"Hot sales"}
+                        isLoading={isLoading}
+                        isSuccess={isSuccess}
+                        items={products.products.slice(0, 10)}
+                    />
+                ) : (
+                    ""
+                )}
+                {isSuccess && products?.products ? (
+                    <ProductsSlider
+                        header={"Recently Viewed"}
+                        isLoading={isLoading}
+                        isSuccess={isSuccess}
+                        items={products.products.slice(10, 20)}
+                        finalSection
+                    />
+                ) : (
+                    ""
+                )}
             </ScrollView>
         </SafeAreaView>
     );
