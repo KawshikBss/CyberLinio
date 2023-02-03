@@ -6,11 +6,13 @@ import ProfileScreen from "./ProfileScreen";
 import WishScreen from "./WishScreen";
 import Feather from "react-native-vector-icons/Feather";
 import { StyleSheet, View } from "react-native";
+import { CartProvider } from "react-use-cart";
 
 const Tab = createBottomTabNavigator();
 
 const ShopStack = () => {
     return (
+        <CartProvider>
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 tabBarStyle: { ...styles.navBar },
@@ -58,7 +60,7 @@ const ShopStack = () => {
             <Tab.Screen name="Wishlist" component={WishScreen} />
             <Tab.Screen name="Cart" component={CartScreen} />
             <Tab.Screen name="Profile" component={ProfileScreen} />
-        </Tab.Navigator>
+        </Tab.Navigator></CartProvider>
     );
 };
 
