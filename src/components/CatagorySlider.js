@@ -1,36 +1,64 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import {
+    View,
+    Text,
+    StyleSheet,
+    ScrollView,
+    TouchableOpacity,
+} from "react-native";
+import React, { useEffect, useState } from "react";
+import useFetch from "../hooks/useFetch";
+import { useNavigation } from "@react-navigation/native";
 
-const CatagorySlider = ({catagories}) => {
-    const [currentCatagory, setCurrentCatagory] = useState(catagories[0]);
+const CatagorySlider = ({ currentCatagory }) => {
+    const navigation = useNavigation();
+    const { data, isSuccess, isLoading, isError } = useFetch(
+        "categories",
+        "products/categories"
+    );
     const isCurrentCat = (name) => {
-        return currentCatagory? name === currentCatagory: false;
-    }
+        return currentCatagory ? name === currentCatagory : false;
+    };
     const handleCatagory = (name) => {
-        setCurrentCatagory(curr => {
-            return curr === name? '': name;
-        })
-    }
-  return (
+        // if (!currentCatagory) return;
+        if (name === currentCatagory) {
+            navigation.navigate("ShopStack", { screen: "Shop" });
+        } else {
+            navigation.navigate("ShopStack", {
+                screen: "Shop",
+                params: { category: name },
+            });
+        }
+    };
+    return (
         <ScrollView
             horizontal
             style={styles.catagoriesContainer}
             showsHorizontalScrollIndicator={false}
         >
-    {catagories ? (
-            catagories.map((cat, index) => {
-                return (
-                    <TouchableOpacity key={index} onPress={() => handleCatagory(cat)}>
-                        <Text style={StyleSheet.flatten([styles.catagory, isCurrentCat(cat)? styles.catagoryActive: {}])}>{cat}</Text>
-                    </TouchableOpacity>
-                );
-            })
-    ) : (
-        <Text>None</Text>
-    )}
+            {isSuccess && data
+                ? data.map((cat, index) => {
+                      return (
+                          <TouchableOpacity
+                              key={index}
+                              onPress={() => handleCatagory(cat)}
+                          >
+                              <Text
+                                  style={StyleSheet.flatten([
+                                      styles.catagory,
+                                      isCurrentCat(cat)
+                                          ? styles.catagoryActive
+                                          : {},
+                                  ])}
+                              >
+                                  {cat}
+                              </Text>
+                          </TouchableOpacity>
+                      );
+                  })
+                : ""}
         </ScrollView>
-  )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     catagoriesContainer: {
@@ -47,7 +75,7 @@ const styles = StyleSheet.create({
     catagoryActive: {
         backgroundColor: "#6C4AB6",
         color: "#FCF7FF",
-    }
+    },
 });
 
-export default CatagorySlider
+export default CatagorySlider;
