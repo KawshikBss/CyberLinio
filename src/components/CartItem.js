@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 
-const CartItem = ({item, vary=false}) => {
+const CartItem = ({item, updateItemQuantity, vary=false}) => {
     const navigation = useNavigation();
     const goToItem = () => {
         navigation.navigate('Product', {
@@ -17,11 +17,14 @@ const CartItem = ({item, vary=false}) => {
             return curr;
         });
     };
+    useEffect(() => {
+        updateItemQuantity(item.id, amount)
+    }, [amount]);
   return (
     <View style={styles.container}>
       <View style={StyleSheet.flatten([styles.imageWrapper, {backgroundColor: vary? '#6C4AB6': styles.imageWrapper.backgroundColor}])}>
         <TouchableOpacity style={styles.imageBackGround} onPress={goToItem}>
-            <Image source={item.images[0]} style={styles.image} />
+            <Image source={{uri: item.thumbnail}} style={styles.image} />
         </TouchableOpacity>
       </View>
       <View style={styles.wrapper}>
