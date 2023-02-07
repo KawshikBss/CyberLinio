@@ -10,6 +10,7 @@ import {
 import Card from "./Card";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
+import CardSkeleton from "./CardSkeleton";
 
 const ProductsSlider = ({
     header,
@@ -38,31 +39,33 @@ const ProductsSlider = ({
             ])}
         >
             <Text style={styles.header}>{header ? header : "Header"}</Text>
-            {isLoading ? (
-                <Text>Loading...</Text>
-            ) : (
-                <ScrollView
-                    horizontal
-                    style={styles.itemsContainer}
-                    showsHorizontalScrollIndicator={false}
-                    decelerationRate={0}
-                    snapToInterval={230}
-                    snapToAlignment={"center"}
-                    onScroll={handleScroll}
-                >
-                    {isSuccess && items ? (
-                        items.map((item, index) => {
-                            return (
-                                <Card
-                                    key={item.id}
-                                    product={item}
-                                    focused={index === currentItem}
-                                />
-                            );
-                        })
-                    ) : (
-                        <Text>No Products</Text>
-                    )}
+            <ScrollView
+                horizontal
+                style={styles.itemsContainer}
+                showsHorizontalScrollIndicator={false}
+                decelerationRate={0}
+                snapToInterval={230}
+                snapToAlignment={"center"}
+                onScroll={handleScroll}
+            >
+                {isSuccess && items ? (
+                    items.map((item, index) => {
+                        return (
+                            <Card
+                                key={item.id}
+                                product={item}
+                                focused={index === currentItem}
+                            />
+                        );
+                    })
+                ) : isLoading ? (
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((item, index) => {
+                        return <CardSkeleton key={index} />;
+                    })
+                ) : (
+                    <Text>No Products</Text>
+                )}
+                {isSuccess && items ? (
                     <View style={styles.allBtnWrapper}>
                         <TouchableOpacity
                             style={styles.allBtn}
@@ -79,8 +82,10 @@ const ProductsSlider = ({
                             />
                         </TouchableOpacity>
                     </View>
-                </ScrollView>
-            )}
+                ) : (
+                    ""
+                )}
+            </ScrollView>
         </View>
     );
 };
