@@ -9,25 +9,33 @@ import {
 import Fontisto from "react-native-vector-icons/Fontisto";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
+import { useCart } from "react-use-cart";
 
-const Card = ({ product, shopView=false, focused = false }) => {
+const Card = ({ product, shopView = false, focused = false }) => {
     const navigation = useNavigation();
+    const { addItem } = useCart();
     const addToWishList = () => {
         Toast.show({
-            type: 'success',
+            type: "success",
             text1: product.title,
-            text2: 'Has been added to your wish list',
-        })
-    }
+            text2: "Has been added to your wish list",
+        });
+    };
     const addToCart = () => {
         Toast.show({
-            type: 'success',
+            type: "success",
             text1: product.title,
-            text2: 'Has been added to your cart',
-        })
-    }
+            text2: "Has been added to your cart",
+        });
+    };
     return (
-        <View style={StyleSheet.flatten([styles.container, shopView? {width: 170, margin: 5}: {marginRight: 10}, focused? styles.focused: !shopView? styles.ignored: {}])}>
+        <View
+            style={StyleSheet.flatten([
+                styles.container,
+                shopView ? { width: 170, margin: 5 } : { marginRight: 10 },
+                focused ? styles.focused : !shopView ? styles.ignored : {},
+            ])}
+        >
             <TouchableOpacity
                 onPress={() =>
                     navigation.navigate("Product", {
@@ -37,7 +45,7 @@ const Card = ({ product, shopView=false, focused = false }) => {
                 }
             >
                 <ImageBackground
-                    source={{uri: product.thumbnail}}
+                    source={{ uri: product.thumbnail }}
                     style={styles.productImage}
                     imageStyle={{
                         borderRadius: 20,
@@ -45,8 +53,20 @@ const Card = ({ product, shopView=false, focused = false }) => {
                         shadowRadius: 10,
                     }}
                 >
-                    <Text style={{...styles.tag, backgroundColor: product.new? '#8D72E1': styles.tag.backgroundColor, color: product.new? '#B9E0FF': styles.tag.color}}>
-                        -{product?.discountPercentage ? product.discountPercentage : "0"}%
+                    <Text
+                        style={{
+                            ...styles.tag,
+                            backgroundColor: product.new
+                                ? "#8D72E1"
+                                : styles.tag.backgroundColor,
+                            color: product.new ? "#B9E0FF" : styles.tag.color,
+                        }}
+                    >
+                        -
+                        {product?.discountPercentage
+                            ? product.discountPercentage
+                            : "0"}
+                        %
                     </Text>
                     <TouchableOpacity
                         style={styles.wishBtn}
@@ -55,17 +75,17 @@ const Card = ({ product, shopView=false, focused = false }) => {
                         }}
                         onPressIn={addToWishList}
                     >
-                        <AntDesign
-                            style={styles.wishIcon}
-                            name="heart"
-                        />
+                        <AntDesign style={styles.wishIcon} name="heart" />
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.cartBtn}
                         onPress={(e) => {
                             e.stopPropagation();
                         }}
-                        onPressIn={addToCart}
+                        onPressIn={() => {
+                            addItem(product);
+                            addToCart();
+                        }}
                     >
                         <Fontisto
                             style={styles.cartIcon}
@@ -92,23 +112,31 @@ const Card = ({ product, shopView=false, focused = false }) => {
                                 : "Product Title"}
                         </Text>
                     </TouchableOpacity>
-                    {shopView? '': (<View style={styles.rating}>
-                        <Text style={styles.ratingText}>
-                            {product.rating ? product.rating : "0.0"}
-                        </Text>
-                        <AntDesign name="star" style={styles.ratingIcon} />
-                    </View>)}
+                    {shopView ? (
+                        ""
+                    ) : (
+                        <View style={styles.rating}>
+                            <Text style={styles.ratingText}>
+                                {product.rating ? product.rating : "0.0"}
+                            </Text>
+                            <AntDesign name="star" style={styles.ratingIcon} />
+                        </View>
+                    )}
                 </View>
                 <View style={styles.header}>
-                <Text style={styles.price}>
-                    {product.price ? product.price : "Product Price"}$
-                </Text>
-                    {shopView? (<View style={styles.rating}>
-                        <Text style={styles.ratingText}>
-                            {product.rating ? product.rating : "0.0"}
-                        </Text>
-                        <AntDesign name="star" style={styles.ratingIcon} />
-                    </View>): ''}
+                    <Text style={styles.price}>
+                        {product.price ? product.price : "Product Price"}$
+                    </Text>
+                    {shopView ? (
+                        <View style={styles.rating}>
+                            <Text style={styles.ratingText}>
+                                {product.rating ? product.rating : "0.0"}
+                            </Text>
+                            <AntDesign name="star" style={styles.ratingIcon} />
+                        </View>
+                    ) : (
+                        ""
+                    )}
                 </View>
             </View>
         </View>
@@ -196,7 +224,7 @@ const styles = StyleSheet.create({
     title: {
         color: "#B9E0FF",
         // fontSize: 16,
-        fontWeight: '900',
+        fontWeight: "900",
     },
     priceContainer: {
         flexDirection: "row",
