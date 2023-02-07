@@ -15,6 +15,7 @@ const CatagorySlider = ({ currentCatagory }) => {
         "categories",
         "products/categories"
     );
+    console.log(data);
     const isCurrentCat = (name) => {
         return currentCatagory ? name === currentCatagory : false;
     };
@@ -55,6 +56,9 @@ const CatagorySlider = ({ currentCatagory }) => {
                           </TouchableOpacity>
                       );
                   })
+                :
+                isLoading?
+                <Text>Loading...</Text>
                 : ""}
         </ScrollView>
     );
