@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React from "react";
 import Header from "../components/Header";
-import products from "../products";
+// import products from "../products";
 import ProductsSlider from "../components/ProductsSlider";
 import catagories from "../catagories";
 import CatagorySlider from "../components/CatagorySlider";
@@ -21,7 +21,7 @@ const HomeScreen = () => {
         isLoading,
         isError,
         isSuccess,
-    } = useFetch("products-home", "products/?limit=20");
+    } = useFetch("products-home", "products");
     return (
         <SafeAreaView>
             <ScrollView style={styles.container}>
@@ -31,22 +31,22 @@ const HomeScreen = () => {
                     source={require("../../assets/HomeBanner.gif")}
                 />
                 <CatagorySlider catagories={catagories} />
-                {isSuccess && products?.products ? (
+                {isSuccess && products ? (
                     <ProductsSlider
                         header={"Hot sales"}
                         isLoading={isLoading}
                         isSuccess={isSuccess}
-                        items={products.products.slice(0, 10)}
+                        items={products.slice(0, 10)}
                     />
                 ) : (
                     ""
                 )}
-                {isSuccess && products?.products ? (
+                {isSuccess && products ? (
                     <ProductsSlider
                         header={"Recently Viewed"}
                         isLoading={isLoading}
                         isSuccess={isSuccess}
-                        items={products.products.slice(10, 20)}
+                        items={products}
                         finalSection
                     />
                 ) : (
