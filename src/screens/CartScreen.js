@@ -4,20 +4,25 @@ import CartItem from '../components/CartItem';
 import products from '../products';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
+import { useCart } from 'react-use-cart';
 
 const CartScreen = () => {
   const navigation = useNavigation();
+  const {isEmpty, items, updateItemQuantity, removeItem, cartTotal} = useCart();
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.header}>My Cart</Text>
       <ScrollView>
         {
-          products?.new?
-            products.new.slice(0, 4).map((item, index) => {
+          !isEmpty?
+            items && items.map((item, index) => {
               return (
-                <CartItem item={item} key={index} vary={index % 2 === 0} />
-              )
-            }): ''
+                <CartItem item={item} updateItemQuantity={updateItemQuantity} removeItem={removeItem} key={index} vary={index % 2 === 0} />
+                )
+            })
+            : (
+              <Text style={styles.header}>Cart Is Empty</Text>
+            )
         }
       </ScrollView>
       <View style={styles.couponContainer}>
@@ -29,7 +34,7 @@ const CartScreen = () => {
       <View style={styles.statsContainer}>
         <View style={styles.statsSection}>
           <Text style={styles.statsText}>Cart Total:</Text>
-          <Text style={styles.statsText}>0$</Text>
+          <Text style={styles.statsText}>{cartTotal}$</Text>
         </View>
         <View style={styles.statsSection}>
           <Text style={styles.statsText}>Discount:</Text>
