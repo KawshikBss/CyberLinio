@@ -8,6 +8,7 @@ import {
 import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import { useNavigation } from "@react-navigation/native";
+import BadgeSkeleton from "./BadgeSkeleton";
 
 const CatagorySlider = ({ currentCatagory }) => {
     const navigation = useNavigation();
@@ -15,18 +16,17 @@ const CatagorySlider = ({ currentCatagory }) => {
         "categories",
         "products/categories"
     );
-    console.log(data);
     const isCurrentCat = (name) => {
         return currentCatagory ? name === currentCatagory : false;
     };
-    const handleCatagory = (name) => {
-        // if (!currentCatagory) return;
+    const handleCatagory = (name, id) => {
+        console.log(id);
         if (name === currentCatagory) {
             navigation.navigate("ShopStack", { screen: "Shop" });
         } else {
             navigation.navigate("ShopStack", {
                 screen: "Shop",
-                params: { category: name },
+                params: { category_name: name, category_id: id },
             });
         }
     };
@@ -41,7 +41,7 @@ const CatagorySlider = ({ currentCatagory }) => {
                       return (
                           <TouchableOpacity
                               key={index}
-                              onPress={() => handleCatagory(cat.name)}
+                              onPress={() => handleCatagory(cat.name, cat.id)}
                           >
                               <Text
                                   style={StyleSheet.flatten([
@@ -56,9 +56,10 @@ const CatagorySlider = ({ currentCatagory }) => {
                           </TouchableOpacity>
                       );
                   })
-                :
-                isLoading?
-                <Text>Loading...</Text>
+                : isLoading
+                ? [0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((item, index) => {
+                      return <BadgeSkeleton key={index} />;
+                  })
                 : ""}
         </ScrollView>
     );
