@@ -1,15 +1,16 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import React, { useEffect, useState } from "react";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
-const CartItem = ({item, updateItemQuantity, vary=false}) => {
+const CartItem = ({ item, updateItemQuantity, removeItem, vary = false }) => {
     const navigation = useNavigation();
     const goToItem = () => {
-        navigation.navigate('Product', {
-            params: {product: item}
-        })
-    }
+        navigation.navigate("Product", {
+            params: { product: item },
+        });
+    };
     const [amount, setAmount] = useState(1);
     const changeAmount = (number) => {
         setAmount((curr) => {
@@ -17,21 +18,50 @@ const CartItem = ({item, updateItemQuantity, vary=false}) => {
             return curr;
         });
     };
+    const removeFromCart = () => {
+        removeItem(item.id);
+        Toast.show({
+            type: "success",
+            text1: item.title,
+            text2: "Has been removed from your cart",
+        })
+    };
     useEffect(() => {
-        updateItemQuantity(item.id, amount)
+        updateItemQuantity(item.id, amount);
     }, [amount]);
-  return (
-    <View style={styles.container}>
-      <View style={StyleSheet.flatten([styles.imageWrapper, {backgroundColor: vary? '#6C4AB6': styles.imageWrapper.backgroundColor}])}>
-        <TouchableOpacity style={styles.imageBackGround} onPress={goToItem}>
-            <Image source={{uri: item.thumbnail}} style={styles.image} />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.wrapper}>
-        <View style={styles.header}>
-            <TouchableOpacity style={styles.headerBtn} onPress={() => setAmount(1)}>
-            <FontAwesome name='trash' style={styles.headerBtnIcon} />
-            </TouchableOpacity>
+    return (
+        <View style={styles.container}>
+            <View
+                style={StyleSheet.flatten([
+                    styles.imageWrapper,
+                    {
+                        backgroundColor: vary
+                            ? "#6C4AB6"
+                            : styles.imageWrapper.backgroundColor,
+                    },
+                ])}
+            >
+                <TouchableOpacity
+                    style={styles.imageBackGround}
+                    onPress={goToItem}
+                >
+                    <Image
+                        source={{ uri: item.thumbnail }}
+                        style={styles.image}
+                    />
+                </TouchableOpacity>
+            </View>
+            <View style={styles.wrapper}>
+                <View style={styles.header}>
+                    <TouchableOpacity
+                        style={styles.headerBtn}
+                        onPress={removeFromCart}
+                    >
+                        <FontAwesome
+                            name="trash"
+                            style={styles.headerBtnIcon}
+                        />
+                    </TouchableOpacity>
                     <View style={styles.amount}>
                         <TouchableOpacity
                             style={styles.amountBtn}
@@ -47,40 +77,44 @@ const CartItem = ({item, updateItemQuantity, vary=false}) => {
                             <Text style={styles.amountBtnText}>+</Text>
                         </TouchableOpacity>
                     </View>
+                </View>
+                <View style={styles.infoWrapper}>
+                    <TouchableOpacity onPress={goToItem}>
+                        <Text style={styles.title}>
+                            {item?.title ? item.title : "Title"}
+                        </Text>
+                    </TouchableOpacity>
+                    <Text style={styles.price}>
+                        ${item?.price ? item.price * amount : "0"}
+                    </Text>
+                </View>
+            </View>
         </View>
-        <View style={styles.infoWrapper}>
-            <TouchableOpacity onPress={goToItem}>
-            <Text style={styles.title}>{item?.title? item.title: 'Title'}</Text>
-            </TouchableOpacity>
-            <Text style={styles.price}>${item?.price? (item.price * amount): '0'}</Text>
-        </View>
-      </View>
-    </View>
-  )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: '#B9E0FF',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        backgroundColor: "#B9E0FF",
         borderBottomRightRadius: 50,
         borderTopLeftRadius: 20,
         borderBottomLeftRadius: 20,
         borderBottomWidth: 2,
         borderRightWidth: 3,
-        borderColor: '#6C4AB6',
+        borderColor: "#6C4AB6",
         borderTopRightRadius: 10,
         padding: 10,
         paddingLeft: 0,
         margin: 10,
     },
     imageWrapper: {
-        width: '40%',
+        width: "40%",
         height: 50,
-        backgroundColor: '#8D9EFF',
-        alignItems: 'center',
+        backgroundColor: "#8D9EFF",
+        alignItems: "center",
     },
     imageBackGround: {
         alignItems: "center",
@@ -88,13 +122,13 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         backgroundColor: "#FCF7FF",
         padding: 5,
-        position: 'absolute',
+        position: "absolute",
         right: -15,
         top: -38,
-        alignSelf: 'center',
+        alignSelf: "center",
         borderBottomWidth: 2,
         borderRightWidth: 2,
-        borderColor: '#8D9EFF',
+        borderColor: "#8D9EFF",
     },
     image: {
         width: 100,
@@ -103,9 +137,9 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
     },
     headerBtn: {},
     headerBtnIcon: {
@@ -117,16 +151,16 @@ const styles = StyleSheet.create({
     },
     headerBtnText: {},
     wrapper: {
-        width: '50%',
+        width: "50%",
     },
     infoWrapper: {},
     title: {
-        color: '#6C4AB6',
+        color: "#6C4AB6",
         fontSize: 16,
-        fontWeight: '700',
+        fontWeight: "700",
     },
     price: {
-        color: '#8D72E1',
+        color: "#8D72E1",
         // fontSize: 20,
     },
     amount: {
@@ -148,8 +182,8 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
     },
     amountBtnText: {
         color: "#6C4AB6",
@@ -158,4 +192,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CartItem
+export default CartItem;
