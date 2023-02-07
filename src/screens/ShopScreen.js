@@ -15,39 +15,29 @@ import FilterDrawer from "../components/FilterDrawer";
 import useFetch from "../hooks/useFetch";
 
 const ShopScreen = ({ route }) => {
-    const category = route?.params?.category
-        ? route?.params?.category
+    const category_id = route?.params?.category_id
+        ? route?.params?.category_id
+        : undefined;
+    const category_name = route?.params?.category_name
+        ? route?.params?.category_name
         : undefined;
     const searchWord = route?.params?.searchWord
         ? route?.params?.searchWord
         : undefined;
-    const fetchProducts = () => {
-        if (searchWord !== undefined || searchWord !== null) {
-            return useFetch(
-                ["products-search", searchWord],
-                `products/search?q=${searchWord}`
-            );
-        } else if (category !== undefined || category !== null) {
-            return useFetch(
-                ["products-category", category],
-                `products/category/${category}`
-            );
-        }
-        return useFetch("products", "products/?limit=20");
-    };
     const {
         data: products,
         isLoading,
         isError,
         isSuccess,
     } = useFetch(
-        ["products", searchWord, category],
+        ["products", searchWord, category_id],
         searchWord
-            ? `products/search?q=${searchWord}`
-            : category
-            ? `products/category/${category}`
-            : "products/?limit=20"
+            ? `products?search=${searchWord}`
+            : category_id
+            ? `products?category=${category_id}`
+            : "products"
     );
+    console.log(products);
     const [selections, setSelections] = useState({
         match: false,
         sales: false,
@@ -147,13 +137,13 @@ const ShopScreen = ({ route }) => {
                 </TouchableOpacity>
             </View>
             <View>
-                <CatagorySlider currentCatagory={category} />
+                <CatagorySlider currentCatagory={category_name} />
             </View>
-            {isSuccess && products?.products ? (
-                <ProductsView products={products.products} />
-            ) : (
-                ""
-            )}
+            <ProductsView
+                products={products ? products : []}
+                isSuccess={isSuccess}
+                isLoading={isLoading}
+            />
         </SafeAreaView>
     );
 };
