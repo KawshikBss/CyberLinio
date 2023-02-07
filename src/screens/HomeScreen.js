@@ -30,28 +30,20 @@ const HomeScreen = () => {
                     style={styles.banner}
                     source={require("../../assets/HomeBanner.gif")}
                 />
-                <CatagorySlider catagories={catagories} />
-                {isSuccess && products ? (
-                    <ProductsSlider
-                        header={"Hot sales"}
-                        isLoading={isLoading}
-                        isSuccess={isSuccess}
-                        items={products.slice(0, 10)}
-                    />
-                ) : (
-                    ""
-                )}
-                {isSuccess && products ? (
-                    <ProductsSlider
-                        header={"Recently Viewed"}
-                        isLoading={isLoading}
-                        isSuccess={isSuccess}
-                        items={products}
-                        finalSection
-                    />
-                ) : (
-                    ""
-                )}
+                <CatagorySlider />
+                <ProductsSlider
+                    header={"Hot sales"}
+                    isLoading={isLoading}
+                    isSuccess={isSuccess}
+                    items={products ? products.slice(0, 10) : []}
+                />
+                <ProductsSlider
+                    header={"Recently Viewed"}
+                    isLoading={isLoading}
+                    isSuccess={isSuccess}
+                    items={products ? products : []}
+                    finalSection
+                />
             </ScrollView>
         </SafeAreaView>
     );
