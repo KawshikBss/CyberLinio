@@ -45,7 +45,7 @@ const Card = ({ product, shopView = false, focused = false }) => {
                 }
             >
                 <ImageBackground
-                    source={{ uri: product.thumbnail }}
+                    source={{ uri: product.images[0].src }}
                     style={styles.productImage}
                     imageStyle={{
                         borderRadius: 20,
@@ -105,10 +105,10 @@ const Card = ({ product, shopView = false, focused = false }) => {
                         }
                     >
                         <Text style={styles.title}>
-                            {product.title
-                                ? product.title.length > 10
-                                    ? `${product.title.slice(0, 10)}...`
-                                    : product.title
+                            {product.name
+                                ? product.name.length > 10
+                                    ? `${product.name.slice(0, 10)}...`
+                                    : product.name
                                 : "Product Title"}
                         </Text>
                     </TouchableOpacity>
@@ -117,7 +117,7 @@ const Card = ({ product, shopView = false, focused = false }) => {
                     ) : (
                         <View style={styles.rating}>
                             <Text style={styles.ratingText}>
-                                {product.rating ? product.rating : "0.0"}
+                                {product.average_rating ? product.average_rating : "0.0"}
                             </Text>
                             <AntDesign name="star" style={styles.ratingIcon} />
                         </View>
@@ -130,7 +130,7 @@ const Card = ({ product, shopView = false, focused = false }) => {
                     {shopView ? (
                         <View style={styles.rating}>
                             <Text style={styles.ratingText}>
-                                {product.rating ? product.rating : "0.0"}
+                                {product.average_rating ? product.average_rating : "0.0"}
                             </Text>
                             <AntDesign name="star" style={styles.ratingIcon} />
                         </View>
