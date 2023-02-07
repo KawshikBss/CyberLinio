@@ -53,21 +53,23 @@ const Card = ({ product, shopView = false, focused = false }) => {
                         shadowRadius: 10,
                     }}
                 >
-                    <Text
-                        style={{
-                            ...styles.tag,
-                            backgroundColor: product.new
-                                ? "#8D72E1"
-                                : styles.tag.backgroundColor,
-                            color: product.new ? "#B9E0FF" : styles.tag.color,
-                        }}
-                    >
-                        -
-                        {product?.discountPercentage
-                            ? product.discountPercentage
-                            : "0"}
-                        %
-                    </Text>
+                    {product?.tags && product.tags[0] ? (
+                        <Text
+                            style={{
+                                ...styles.tag,
+                                backgroundColor: product.new
+                                    ? "#8D72E1"
+                                    : styles.tag.backgroundColor,
+                                color: product.new
+                                    ? "#B9E0FF"
+                                    : styles.tag.color,
+                            }}
+                        >
+                            {product.tags[0]}
+                        </Text>
+                    ) : (
+                        ""
+                    )}
                     <TouchableOpacity
                         style={styles.wishBtn}
                         onPress={(e) => {
@@ -117,7 +119,9 @@ const Card = ({ product, shopView = false, focused = false }) => {
                     ) : (
                         <View style={styles.rating}>
                             <Text style={styles.ratingText}>
-                                {product.average_rating ? product.average_rating : "0.0"}
+                                {product.average_rating
+                                    ? product.average_rating
+                                    : "0.0"}
                             </Text>
                             <AntDesign name="star" style={styles.ratingIcon} />
                         </View>
@@ -130,7 +134,9 @@ const Card = ({ product, shopView = false, focused = false }) => {
                     {shopView ? (
                         <View style={styles.rating}>
                             <Text style={styles.ratingText}>
-                                {product.average_rating ? product.average_rating : "0.0"}
+                                {product.average_rating
+                                    ? product.average_rating
+                                    : "0.0"}
                             </Text>
                             <AntDesign name="star" style={styles.ratingIcon} />
                         </View>
