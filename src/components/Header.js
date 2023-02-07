@@ -5,21 +5,37 @@ import {
     TouchableOpacity,
     TextInput,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Feather from "react-native-vector-icons/Feather";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 
 const Header = () => {
     const navigation = useNavigation();
+    const [searchWord, setSearchWord] = useState("");
+    const handleSearchWordChange = (value) => {
+        setSearchWord(value);
+    };
+    const handleSearch = () => {
+        if (searchWord.length) {
+            navigation.navigate("ShopStack", {
+                screen: "Shop",
+                params: { searchWord: searchWord },
+            });
+        }
+    };
     return (
         <View style={styles.container}>
             <View style={styles.searchWrapper}>
-                <TouchableOpacity style={styles.searchBtn}>
+                <TouchableOpacity
+                    style={styles.searchBtn}
+                    onPress={handleSearch}
+                >
                     <Feather name="search" style={styles.searchBtnText} />
                 </TouchableOpacity>
                 <TextInput
                     style={styles.searchInput}
+                    onChangeText={(value) => handleSearchWordChange(value)}
                     placeholder={"What are you looking for?"}
                 />
             </View>
