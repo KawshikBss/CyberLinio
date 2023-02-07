@@ -40,17 +40,17 @@ const CatagorySlider = ({ currentCatagory }) => {
                       return (
                           <TouchableOpacity
                               key={index}
-                              onPress={() => handleCatagory(cat)}
+                              onPress={() => handleCatagory(cat.name)}
                           >
                               <Text
                                   style={StyleSheet.flatten([
                                       styles.catagory,
-                                      isCurrentCat(cat)
+                                      isCurrentCat(cat.name)
                                           ? styles.catagoryActive
                                           : {},
                                   ])}
                               >
-                                  {cat}
+                                  {cat.name}
                               </Text>
                           </TouchableOpacity>
                       );
