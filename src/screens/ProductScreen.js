@@ -62,7 +62,7 @@ const ProductScreen = ({ route }) => {
             <TouchableOpacity style={styles.imageContainer} onPress={toggleImageModal}>
                 <Image
                     style={styles.image}
-                    source={{uri: product.images[currentImage]}}
+                    source={{uri: product.images[currentImage].src}}
                 />
             </TouchableOpacity>
             <View style={styles.imageListContainer}>
@@ -76,7 +76,7 @@ const ProductScreen = ({ route }) => {
                                   <View style={styles.listImageContainer}>
                                       <Image
                                           style={styles.listImage}
-                                          source={{uri: image}}
+                                          source={{uri: image.src}}
                                       />
                                   </View>
                               </TouchableOpacity>
@@ -94,7 +94,7 @@ const ProductScreen = ({ route }) => {
                     <View style={styles.rating}>
                         
                         <AntDesign name="star" style={styles.ratingIcon} />
-                        <Text style={styles.ratingText}>{product?.rating? product.rating: '0.0'}</Text>
+                        <Text style={styles.ratingText}>{product?.average_rating? product.average_rating: '0.0'}</Text>
                     </View>
                 </View>
                 <Text style={styles.title}>
