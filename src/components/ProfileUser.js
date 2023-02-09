@@ -14,7 +14,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { LinearGradient } from "expo-linear-gradient";
 
 const ProfileUser = ({ user = users[0], extended, toggle }) => {
-    const [userName, setUserName] = useState(user?.name ? user?.name : "");
+    const [userName, setUserName] = useState(user?.username ? user?.username : "");
     const [userPhone, setUserPhone] = useState(user?.phone ? user?.phone : "");
     const [userEmail, setUserEmail] = useState(user?.email ? user?.email : "");
     const [userLocation, setUserLocation] = useState(
@@ -137,8 +137,8 @@ const ProfileUser = ({ user = users[0], extended, toggle }) => {
                                 </TouchableOpacity>
                             </View>
                         ) : (
-                            <Text style={styles.sectionHeading}>
-                                {user?.name ? user?.name : "N/A"}
+                            <Text style={StyleSheet.flatten([styles.sectionHeading, styles.sectionShort])}>
+                                {user?.username ? user?.username : "N/A"}
                             </Text>
                         )}
                     </View>
@@ -173,7 +173,7 @@ const ProfileUser = ({ user = users[0], extended, toggle }) => {
                                 </TouchableOpacity>
                             </View>
                         ) : (
-                            <Text style={styles.sectionInfo}>
+                            <Text style={StyleSheet.flatten([styles.sectionInfo, styles.sectionShort])}>
                                 {user?.phone ? user?.phone : "N/A"}
                             </Text>
                         )}
@@ -208,7 +208,7 @@ const ProfileUser = ({ user = users[0], extended, toggle }) => {
                                 </TouchableOpacity>
                             </View>
                         ) : (
-                            <Text style={styles.sectionInfo}>
+                            <Text style={StyleSheet.flatten([styles.sectionInfo, styles.sectionShort])}>
                                 {user?.email ? user?.email : "N/A"}
                             </Text>
                         )}
@@ -243,7 +243,7 @@ const ProfileUser = ({ user = users[0], extended, toggle }) => {
                                 </TouchableOpacity>
                             </View>
                         ) : (
-                            <Text style={styles.sectionInfo}>
+                            <Text style={StyleSheet.flatten([styles.sectionInfo, styles.sectionShort])}>
                                 {user?.location ? user?.location : "N/A"}
                             </Text>
                         )}
@@ -344,6 +344,9 @@ const styles = StyleSheet.create({
     sectionInfo: {
         color: "#6C4AB6",
         marginLeft: 10,
+    },
+    sectionShort: {
+        width: '80%',
     },
     editWrapper: {
         flexDirection: "row",
