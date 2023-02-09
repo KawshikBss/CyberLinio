@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import BuyProductModal from "../components/BuyProductModal";
 import ImagePopModal from "../components/ImagePopModal";
 import ProductReviews from "../components/ProductReviews";
-import reviews from "../reviews";
+import useFetch from "../hooks/useFetch";
 
 const ProductScreen = ({ route }) => {
     const { product } = route.params.params;
@@ -98,7 +98,7 @@ const ProductScreen = ({ route }) => {
                     </View>
                 </View>
                 <Text style={styles.title}>
-                    {product?.title ? product.title : "Product Title"}
+                    {product?.name ? product.name : "Product Title"}
                 </Text>
                 <Text style={styles.description}>
                     {product?.description
@@ -136,7 +136,7 @@ const ProductScreen = ({ route }) => {
                         ""
                     )}
                 </View>
-                <ProductReviews reviews={reviews} />
+                <ProductReviews product_id={product?.id? product.id: 0} />
                 <View style={styles.buyWrapper}>
                     <View style={styles.amount}>
                         <TouchableOpacity
