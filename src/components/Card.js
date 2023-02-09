@@ -65,7 +65,7 @@ const Card = ({ product, shopView = false, focused = false }) => {
                                     : styles.tag.color,
                             }}
                         >
-                            {product.tags[0]}
+                            {product.tags[0].name}
                         </Text>
                     ) : (
                         ""
