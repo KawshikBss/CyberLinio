@@ -6,12 +6,27 @@ import {
     TouchableOpacity,
     ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Review from "./Review";
+import { UserContext } from "../services/AuthContext";
+import { useNavigation } from "@react-navigation/native";
+import useFetch from "../hooks/useFetch";
+import requests from "../services/httpServices";
 
-const ProductReviews = ({ reviews }) => {
+const ProductReviews = ({ product_id }) => {
+    const {
+        data: reviews,
+        refetch,
+        isSuccess,
+    } = useFetch(
+        ["product-reviews"],
+        `products/reviews`
+    );
+    const navigation = useNavigation();
+    const { authUser, isSignedIn } = useContext(UserContext);
+    const [reviewMsg, setReviewMsg] = useState("");
     const [ratings, setRatings] = useState({
         selectedIndex: -1,
         indexes: [false, false, false, false, false],
@@ -20,58 +35,99 @@ const ProductReviews = ({ reviews }) => {
         setRatings((curr) => {
             return {
                 selectedIndex: curr.selectedIndex === index ? -1 : index,
-                indexes: curr.selectedIndex === index ? [false, false, false, false, false] :[
-                    ...curr.indexes.map((item, i) => {
-                        return i <= index;
-                    }),
-                ],
+                indexes:
+                    curr.selectedIndex === index
+                        ? [false, false, false, false, false]
+                        : [
+                              ...curr.indexes.map((item, i) => {
+                                  return i <= index;
+                              }),
+                          ],
             };
         });
     };
+    const submitReview = () => {
+        requests
+            .post("products/reviews", {
+                product_id: product_id,
+                review: reviewMsg,
+                reviewer: authUser.username,
+                reviewer_email: authUser.email,
+                rating: ratings.selectedIndex + 1,
+            })
+            .then((res) => {
+                refetch();
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>Reviews</Text>
-            <View style={styles.addInputGroup}>
-                <TextInput
-                    style={styles.addInput}
-                    placeholder="Leave A Review"
-                />
-                <TouchableOpacity style={styles.addBtn}>
-                    <MaterialIcons
-                        name="rate-review"
-                        style={styles.addBtnText}
+
+            {isSignedIn ? (
+                <View style={styles.addInputGroup}>
+                    <TextInput
+                        style={styles.addInput}
+                        placeholder="Leave A Review"
+                        onChangeText={value => setReviewMsg(value)}
                     />
+                    <TouchableOpacity
+                        style={styles.addBtn}
+                        onPress={submitReview}
+                    >
+                        <MaterialIcons
+                            name="rate-review"
+                            style={styles.addBtnText}
+                        />
+                    </TouchableOpacity>
+                </View>
+            ) : (
+                <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                    <Text style={styles.linkBtnText}>
+                        Login to leave a review
+                    </Text>
                 </TouchableOpacity>
-            </View>
-            <View style={styles.ratingBtnContainer}>
-                {ratings.indexes.map((item, index) => {
-                    return (
-                        <TouchableOpacity
-                            key={index}
-                            onPress={() => selectRating(index)}
-                        >
-                            <AntDesign
-                                name="star"
-                                style={StyleSheet.flatten([
-                                    styles.ratingBtnText,
-                                    item ? styles.ratingBtnActive : {},
-                                ])}
-                            />
-                        </TouchableOpacity>
-                    );
-                })}
-            </View>
+            )}
+            {isSignedIn ? (
+                <View style={styles.ratingBtnContainer}>
+                    {ratings.indexes.map((item, index) => {
+                        return (
+                            <TouchableOpacity
+                                key={index}
+                                onPress={() => selectRating(index)}
+                            >
+                                <AntDesign
+                                    name="star"
+                                    style={StyleSheet.flatten([
+                                        styles.ratingBtnText,
+                                        item ? styles.ratingBtnActive : {},
+                                    ])}
+                                />
+                            </TouchableOpacity>
+                        );
+                    })}
+                </View>
+            ) : (
+                ""
+            )}
+
             <View style={styles.reviewsContainer}>
                 <ScrollView
                     nestedScrollEnabled
                     contentContainerStyle={styles.reviewItems}
                 >
-                    {reviews ? (
+                    {isSuccess && reviews ? (
                         reviews.map((item, index) => {
                             return <Review item={item} key={index} />;
                         })
                     ) : (
-                        <Text>No Reviews</Text>
+                        <Text style={styles.linkBtnText}>
+                            Product has no reviews
+                        </Text>
                     )}
                 </ScrollView>
             </View>
@@ -89,16 +145,16 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: "#6C4AB6",
         fontWeight: "700",
-        alignSelf: 'flex-start',
+        alignSelf: "flex-start",
         borderBottomWidth: 1,
-        borderColor: '#6C4AB6',
+        borderColor: "#6C4AB6",
         marginLeft: 10,
     },
     addInputGroup: {
         flexDirection: "row",
         alignItems: "center",
         marginVertical: 20,
-        alignSelf: 'flex-start',
+        alignSelf: "flex-start",
     },
     addInput: {
         width: "70%",
@@ -142,6 +198,11 @@ const styles = StyleSheet.create({
     },
     reviewItems: {
         alignItems: "center",
+    },
+    linkBtnText: {
+        color: "#8D72E1",
+        marginTop: 10,
+        fontSize: 16,
     },
 });
 
