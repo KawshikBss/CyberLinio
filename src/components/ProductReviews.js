@@ -27,7 +27,6 @@ const ProductReviews = ({ reviews }) => {
                 ],
             };
         });
-        console.log(ratings);
     };
     return (
         <View style={styles.container}>

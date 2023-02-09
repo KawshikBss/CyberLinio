@@ -20,7 +20,6 @@ const CatagorySlider = ({ currentCatagory }) => {
         return currentCatagory ? name === currentCatagory : false;
     };
     const handleCatagory = (name, id) => {
-        console.log(id);
         if (name === currentCatagory) {
             navigation.navigate("ShopStack", { screen: "Shop" });
         } else {
