@@ -37,7 +37,6 @@ const ShopScreen = ({ route }) => {
             ? `products?category=${category_id}`
             : "products"
     );
-    console.log(products);
     const [selections, setSelections] = useState({
         match: false,
         sales: false,
