@@ -19,6 +19,7 @@ import toastConfig from "./src/toastConfig";
 import CheckoutScreen from "./src/screens/CheckoutScreen";
 import { QueryClient, QueryClientProvider } from "react-query";
 import AuthContext from "./src/services/AuthContext";
+import { CartProvider } from "react-use-cart";
 
 const Stack = createNativeStackNavigator();
 const queryClient = new QueryClient();
@@ -27,43 +28,60 @@ export default function App() {
     return (
         <QueryClientProvider client={queryClient}>
             <AuthContext>
-                <NavigationContainer>
-                    <Stack.Navigator
-                        initialRouteName="Splash"
-                        screenOptions={{
-                            headerShown: false,
-                            navigationBarHidden: true,
-                        }}
-                    >
-                        <Stack.Screen name="Splash" component={SplashScreen} />
-                        <Stack.Screen name="ShopStack" component={ShopStack} />
-                        <Stack.Screen
-                            name="Product"
-                            component={ProductScreen}
-                        />
-                        <Stack.Screen
-                            name="Checkout"
-                            component={CheckoutScreen}
-                        />
-                        <Stack.Screen
-                            name="OrdersStack"
-                            component={OrdersStack}
-                        />
-                        <Stack.Screen name="Login" component={LoginScreen} />
-                        <Stack.Screen name="Signup" component={SignupScreen} />
-                        <Stack.Screen
-                            name="Notifications"
-                            component={MessageScreen}
-                        />
-                        <Stack.Screen
-                            name="Reviews"
-                            component={ReviewsScreen}
-                        />
-                        <Stack.Screen name="Redeem" component={RedeemScreen} />
-                        <Stack.Screen name="Help" component={HelpScreen} />
-                    </Stack.Navigator>
-                    <Toast config={toastConfig} />
-                </NavigationContainer>
+                <CartProvider>
+                    <NavigationContainer>
+                        <Stack.Navigator
+                            initialRouteName="Splash"
+                            screenOptions={{
+                                headerShown: false,
+                                navigationBarHidden: true,
+                            }}
+                        >
+                            <Stack.Screen
+                                name="Splash"
+                                component={SplashScreen}
+                            />
+                            <Stack.Screen
+                                name="ShopStack"
+                                component={ShopStack}
+                            />
+                            <Stack.Screen
+                                name="Product"
+                                component={ProductScreen}
+                            />
+                            <Stack.Screen
+                                name="Checkout"
+                                component={CheckoutScreen}
+                            />
+                            <Stack.Screen
+                                name="OrdersStack"
+                                component={OrdersStack}
+                            />
+                            <Stack.Screen
+                                name="Login"
+                                component={LoginScreen}
+                            />
+                            <Stack.Screen
+                                name="Signup"
+                                component={SignupScreen}
+                            />
+                            <Stack.Screen
+                                name="Notifications"
+                                component={MessageScreen}
+                            />
+                            <Stack.Screen
+                                name="Reviews"
+                                component={ReviewsScreen}
+                            />
+                            <Stack.Screen
+                                name="Redeem"
+                                component={RedeemScreen}
+                            />
+                            <Stack.Screen name="Help" component={HelpScreen} />
+                        </Stack.Navigator>
+                        <Toast config={toastConfig} />
+                    </NavigationContainer>
+                </CartProvider>
             </AuthContext>
         </QueryClientProvider>
     );
