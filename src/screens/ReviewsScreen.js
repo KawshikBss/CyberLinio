@@ -1,77 +1,73 @@
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
-import reviews from '../reviews';
-import Review from '../components/Review';
+import {
+    View,
+    Text,
+    StyleSheet,
+    SafeAreaView,
+    ScrollView,
+    TouchableOpacity,
+} from "react-native";
+import React from "react";
+import Review from "../components/Review";
 import Feather from "react-native-vector-icons/Feather";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
+import useFetch from "../hooks/useFetch";
 
 const ReviewsScreen = () => {
     const navigation = useNavigation();
-  return (
-    <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-    <TouchableOpacity
-        style={styles.headerBtn}
-        onPress={() => navigation.goBack()}
-    >
-        <Feather name="chevron-left" style={styles.headerBtnText} />
-    </TouchableOpacity>
-    <Text style={styles.heading}>My Reviews</Text></View>
-        <View style={styles.reviewsContainer}>
-      <ScrollView>
-        {
-            reviews?
-                reviews.map((item, index) => {
-                    return (
-                        <View style={styles.reviewWrapper} key={index}>
-                        <Review item={item} /></View>
-                    );
-                }): ''
-        }
-        {
-            reviews?
-                reviews.map((item, index) => {
-                    return (
-                        <View style={styles.reviewWrapper} key={index}>
-                        <Review item={item} /></View>
-                    );
-                }): ''
-        }
-        {
-            reviews?
-                reviews.map((item, index) => {
-                    return (
-                        <View style={styles.reviewWrapper} key={index}>
-                        <Review item={item} /></View>
-                    );
-                }): ''
-        }
-      </ScrollView></View>
-    </SafeAreaView>
-  )
-}
+    const { data: reviews, refetch, isSuccess } = useFetch(["my-reviews"], `products/reviews`);
+    console.log(reviews);
+    return (
+        <SafeAreaView style={styles.container}>
+            <View style={styles.header}>
+                <TouchableOpacity
+                    style={styles.headerBtn}
+                    onPress={() => navigation.goBack()}
+                >
+                    <Feather name="chevron-left" style={styles.headerBtnText} />
+                </TouchableOpacity>
+                <Text style={styles.heading}>My Reviews</Text>
+            </View>
+            <View style={styles.reviewsContainer}>
+                <ScrollView>
+                    {isSuccess && reviews
+                        ? reviews.map((item, index) => {
+                              return (
+                                  <View
+                                      style={styles.reviewWrapper}
+                                      key={index}
+                                  >
+                                      <Review item={item} />
+                                  </View>
+                              );
+                          })
+                        : ""}
+                </ScrollView>
+            </View>
+        </SafeAreaView>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
-        height: '100%',
-        backgroundColor: '#8D72E1'
+        height: "100%",
+        backgroundColor: "#8D72E1",
     },
     heading: {
-      color: '#B9E0FF',
-      fontSize: 24,
-      fontWeight: '900',
-      marginHorizontal: 20,
-      marginTop: 20,
-      // alignSelf: 'center',
+        color: "#B9E0FF",
+        fontSize: 24,
+        fontWeight: "900",
+        marginHorizontal: 20,
+        marginTop: 20,
+        // alignSelf: 'center',
     },
     reviewsContainer: {
         marginBottom: 80,
     },
     reviewWrapper: {
-        backgroundColor: '#FCF7FF',
+        backgroundColor: "#FCF7FF",
         borderRadius: 10,
         padding: 5,
-        margin: 5
+        margin: 5,
     },
     header: {
         flexDirection: "row",
@@ -96,4 +92,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ReviewsScreen
+export default ReviewsScreen;
