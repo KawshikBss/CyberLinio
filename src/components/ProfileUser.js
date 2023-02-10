@@ -95,7 +95,7 @@ const ProfileUser = ({ user = users[0], extended, toggle }) => {
                 ])}
             >
                 <View style={styles.imageWrapper}>
-                    <Image style={styles.image} source={user.image} />
+                    <Image style={styles.image} source={require('../../assets/User.webp')} />
                 </View>
                 <View
                     style={StyleSheet.flatten([
