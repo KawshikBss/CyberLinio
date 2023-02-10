@@ -5,17 +5,16 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 const OrderItem = ({order, handleView}) => {
   return (
     <View style={styles.container}>
-        <View style={styles.imageContainer}>
-      <Image source={order.image} style={styles.image} /></View>
+        {/* <View style={styles.imageContainer}>
+      <Image source={order?.line_items? order?.line_items[0]?.image?.src: ''} style={styles.image} /></View> */}
       <View style={styles.wrapper}>
         <View style={styles.section}>
-            <Text style={styles.itemName}>{order.item} </Text>
-            <Text style={styles.itemAmount}>X {order.amount} </Text>
-            <Text style={styles.itemPrice}>{order.price}$</Text>
+            <Text style={styles.itemName}>Order Number {order?.id} </Text>
+            <Text style={styles.itemPrice}>{order?.total}$</Text>
         </View>
             <Text style={styles.seller}>Seller: {order.seller}</Text>
-            <Text style={styles.date}>Ordered At: {order.created_at}</Text>
-            <Text style={StyleSheet.flatten([styles.status, order.status === 'Delivered'? styles.delivered: order.status === 'Cancelled'? styles.cancelled: {}])}>{order.status}</Text>
+            <Text style={styles.date}>Ordered At: {order.date_created}</Text>
+            <Text style={StyleSheet.flatten([styles.status, order.status === 'completed'? styles.delivered: order.status === 'cancelled'? styles.cancelled: {}])}>{order.status}</Text>
       </View>
             <TouchableOpacity style={styles.viewBtn} onPress={() => handleView(order)}>
                 {/* <AntDesign name='eye' style={styles.viewBtnText} /> */}
