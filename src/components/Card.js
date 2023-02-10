@@ -17,14 +17,14 @@ const Card = ({ product, shopView = false, focused = false }) => {
     const addToWishList = () => {
         Toast.show({
             type: "success",
-            text1: product.title,
+            text1: product.name,
             text2: "Has been added to your wish list",
         });
     };
     const addToCart = () => {
         Toast.show({
             type: "success",
-            text1: product.title,
+            text1: product.name,
             text2: "Has been added to your cart",
         });
     };
@@ -45,7 +45,7 @@ const Card = ({ product, shopView = false, focused = false }) => {
                 }
             >
                 <ImageBackground
-                    source={{ uri: product.images[0].src }}
+                    source={{ uri: product?.images[0]?.src }}
                     style={styles.productImage}
                     imageStyle={{
                         borderRadius: 20,
