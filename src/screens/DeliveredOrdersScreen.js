@@ -1,10 +1,19 @@
-import { View, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import {
+    View,
+    Text,
+    SafeAreaView,
+    StyleSheet,
+    ScrollView,
+    TouchableOpacity,
+} from "react-native";
+import React, { useContext, useState } from "react";
 import orders from "../orders";
 import OrderItem from "../components/OrderItem";
 import OrderModal from "../components/OrderModal";
 import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
+import { UserContext } from "../services/AuthContext";
+import useFetch from "../hooks/useFetch";
 
 const DeliveredOrdersScreen = () => {
     const navigation = useNavigation();
@@ -16,6 +25,15 @@ const DeliveredOrdersScreen = () => {
         });
     };
     const [selectedOrder, setSelectedOrder] = useState({});
+    const { authUser } = useContext(UserContext);
+    const {
+        data: orders,
+        isSuccess,
+        isLoading,
+    } = useFetch(
+        ["completed-orders"],
+        `orders?customer_id=${authUser.id}&status=completed`
+    );
     return (
         <SafeAreaView style={styles.container}>
             <OrderModal
@@ -25,26 +43,28 @@ const DeliveredOrdersScreen = () => {
             />
             <TouchableOpacity
                 style={styles.headerBtn}
-                onPress={() => navigation.navigate('Profile')}
+                onPress={() => navigation.navigate("Profile")}
             >
                 <Feather name="chevron-left" style={styles.headerBtnIcon} />
                 <Text style={styles.headerBtnText}>Go Back</Text>
             </TouchableOpacity>
             <View>
                 <ScrollView>
-                    {orders
-                        ? orders.map((order, index) => {
-                              return order.status === "Delivered" ? (
-                                  <OrderItem
-                                      order={order}
-                                      key={index}
-                                      handleView={toggleOrderModal}
-                                  />
-                              ) : (
-                                  ""
-                              );
-                          })
-                        : ""}
+                    {isLoading ? (
+                        <Text style={styles.headerBtnText}>Loading...</Text>
+                    ) : isSuccess && orders ? (
+                        orders.map((order, index) => {
+                            return (
+                                <OrderItem
+                                    order={order}
+                                    key={index}
+                                    handleView={toggleOrderModal}
+                                />
+                            );
+                        })
+                    ) : (
+                        ""
+                    )}
                 </ScrollView>
             </View>
         </SafeAreaView>
@@ -75,7 +95,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         marginTop: 10,
         marginLeft: 10,
-        flexDirection: 'row',
+        flexDirection: "row",
         padding: 5,
         paddingRight: 10,
     },
