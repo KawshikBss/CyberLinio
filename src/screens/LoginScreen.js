@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import AuthContext, { UserContext } from "../services/AuthContext";
 import useFetch from "../hooks/useFetch";
 import requests from "../services/httpServices";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 const LoginScreen = ({}) => {
     const navigation = useNavigation();
@@ -23,12 +24,26 @@ const LoginScreen = ({}) => {
         });
     };
     const { signIn } = useContext(UserContext);
-    const { data: user } = useFetch(["get-user", email], `customers?email=${email}`);
     const signInUser = () => {
-        if (!user) return;
-        if (signIn(user[0])) {
-            navigation.navigate("ShopStack", { screen: "Home" });
-        }
+        requests
+            .get(`customers?email=${email}`)
+            .then((res) => {
+                if (res && res[0]) {
+                    signIn(res[0]);
+                    navigation.navigate("ShopStack", { screen: "Home" });
+                    Toast.show({
+                        type: "success",
+                        text1: "Wellcome Back " + res[0].username,
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+                Toast.show({
+                    type: "success",
+                    text1: "Please Try Again",
+                });
+            });
     };
     return (
         <View style={styles.container}>
