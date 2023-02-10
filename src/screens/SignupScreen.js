@@ -32,22 +32,26 @@ const SignupScreen = ({}) => {
         });
     };
     const handleEmail = (value) => {
-            setFormData((curr) => {
-                return {
-                    ...curr,
-                    email: value,
-                };
-            });
+        setFormData((curr) => {
+            return {
+                ...curr,
+                email: value,
+            };
+        });
     };
     const navigation = useNavigation();
-    const {signIn} = useContext(UserContext);
+    const { signIn } = useContext(UserContext);
     const signUp = () => {
         console.log(formData);
         requests
-            .post("customers", {...formData})
+            .post("customers", { ...formData })
             .then((res) => {
                 signIn(res);
                 navigation.navigate("ShopStack", { screen: "Home" });
+                Toast.show({
+                    type: "success",
+                    text1: "Wellcome To The Club " + res[0].username,
+                });
             })
             .catch((err) => {
                 console.log(err);
