@@ -11,7 +11,7 @@ const CartItem = ({ item, updateItemQuantity, removeItem, vary = false }) => {
             params: { product: item },
         });
     };
-    const [amount, setAmount] = useState(1);
+    const [amount, setAmount] = useState(item? item.quantity: 1);
     const changeAmount = (number) => {
         setAmount((curr) => {
             if (amount + number >= 0) return curr + number;
