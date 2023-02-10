@@ -62,7 +62,7 @@ const ProductScreen = ({ route }) => {
             <TouchableOpacity style={styles.imageContainer} onPress={toggleImageModal}>
                 <Image
                     style={styles.image}
-                    source={{uri: product.images[currentImage].src}}
+                    source={{uri: product?.images[currentImage]?.src}}
                 />
             </TouchableOpacity>
             <View style={styles.imageListContainer}>
