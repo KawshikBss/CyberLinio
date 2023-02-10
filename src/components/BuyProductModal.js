@@ -2,9 +2,11 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import Modal from "react-native-modal";
+import { useCart } from "react-use-cart";
 
 const BuyProductModal = ({ visible, toggle, product, amount, variant }) => {
     const navigation = useNavigation();
+    const { addItem } = useCart();
     return (
         <Modal
             isVisible={visible}
@@ -16,7 +18,6 @@ const BuyProductModal = ({ visible, toggle, product, amount, variant }) => {
             deviceHeight={"100%"}
         >
             <View style={styles.container}>
-                {/* <Image style={styles.image} source={product.images[0]} /> */}
                 <Text style={styles.title}>
                     {product?.title ? product.title : "Product Title"}
                 </Text>
@@ -59,7 +60,10 @@ const BuyProductModal = ({ visible, toggle, product, amount, variant }) => {
                     <TouchableOpacity
                         onPress={() => {
                             toggle();
-                            navigation.navigate("ShopStack", { screen: "Cart" });
+                            addItem(product, amount);
+                            navigation.navigate("ShopStack", {
+                                screen: "Cart",
+                            });
                         }}
                         style={StyleSheet.flatten([
                             styles.btn,
@@ -70,7 +74,10 @@ const BuyProductModal = ({ visible, toggle, product, amount, variant }) => {
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity
-                    onPress={toggle}
+                    onPress={() => {
+                        toggle();
+                        addItem(product, amount);
+                    }}
                     style={StyleSheet.flatten([
                         styles.btn,
                         { backgroundColor: "#B9E0FF" },
