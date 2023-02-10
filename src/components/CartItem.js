@@ -22,7 +22,7 @@ const CartItem = ({ item, updateItemQuantity, removeItem, vary = false }) => {
         removeItem(item.id);
         Toast.show({
             type: "success",
-            text1: item.title,
+            text1: item.name,
             text2: "Has been removed from your cart",
         })
     };
@@ -46,7 +46,7 @@ const CartItem = ({ item, updateItemQuantity, removeItem, vary = false }) => {
                     onPress={goToItem}
                 >
                     <Image
-                        source={{ uri: item.thumbnail }}
+                        source={{ uri: item.images[0].src }}
                         style={styles.image}
                     />
                 </TouchableOpacity>
@@ -81,7 +81,7 @@ const CartItem = ({ item, updateItemQuantity, removeItem, vary = false }) => {
                 <View style={styles.infoWrapper}>
                     <TouchableOpacity onPress={goToItem}>
                         <Text style={styles.title}>
-                            {item?.title ? item.title : "Title"}
+                            {item?.name ? item.name : "Title"}
                         </Text>
                     </TouchableOpacity>
                     <Text style={styles.price}>
