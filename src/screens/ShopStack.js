@@ -12,7 +12,6 @@ const Tab = createBottomTabNavigator();
 
 const ShopStack = () => {
     return (
-        <CartProvider>
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 tabBarStyle: { ...styles.navBar },
@@ -60,7 +59,7 @@ const ShopStack = () => {
             <Tab.Screen name="Wishlist" component={WishScreen} />
             <Tab.Screen name="Cart" component={CartScreen} />
             <Tab.Screen name="Profile" component={ProfileScreen} />
-        </Tab.Navigator></CartProvider>
+        </Tab.Navigator>
     );
 };
 
